@@ -17,6 +17,31 @@
 .muted{color:#999}.back{background:#e31b23;color:#fff;border:0;padding:10px 16px;border-radius:9px;cursor:pointer}
 .field{background:#18181e;border-radius:11px;padding:15px}.field span{display:block;color:#999;font-size:13px;margin-bottom:7px}
 .empty{color:#aaa;text-align:center;padding:25px}.search{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0f0f13;color:#fff;font-size:15px;margin-bottom:15px}
+
+.map-wrap{background:#0f1015;border:1px solid #29292f;border-radius:15px;padding:10px;overflow:hidden}
+.map-canvas{position:relative;width:100%;line-height:0}
+.map-canvas img{width:100%;height:auto;display:block;border-radius:10px}
+.map-pin{position:absolute;transform:translate(-50%,-50%);width:32px;height:32px;border:2px solid #fff;border-radius:50%;background:rgba(227,27,35,.92);color:#fff;font-size:9px;font-weight:900;line-height:28px;text-align:center;cursor:pointer;z-index:4;box-shadow:0 2px 8px rgba(0,0,0,.55)}
+.map-pin:hover{transform:translate(-50%,-50%) scale(1.12)}
+.map-info{margin-top:12px;background:#18181e;border:1px solid #29292f;border-radius:12px;padding:16px;line-height:1.8}
+.map-info h3{margin:0 0 6px}.map-info p{margin:0;color:#bbb}
+.map-hint{margin:10px 0 0;color:#999;font-size:13px}
+
+
+.login-card{max-width:520px;margin:40px auto;text-align:center}
+.login-card .login-icon{font-size:46px;margin-bottom:10px}
+.login-card input{width:100%;box-sizing:border-box;text-align:center;font-size:20px;padding:14px;border-radius:10px;border:1px solid #333;background:#101116;color:#fff}
+.login-btn{width:100%;margin-top:12px;padding:14px;border:0;border-radius:10px;background:#e31b23;color:#fff;font-size:18px;font-weight:900;cursor:pointer}
+.login-btn:active{transform:scale(.99)}
+.login-msg{margin-top:12px;min-height:24px;font-weight:700}
+.login-user{margin-top:14px;padding:12px;border-radius:10px;background:#17181e;border:1px solid #2b2c32}
+
+
+.login-user{padding:13px;border-radius:10px;background:#17181e;border:1px solid #2b2c32}
+textarea.search{resize:vertical;font-family:inherit}
+.report-card{background:#18181e;border:1px solid #29292f;border-radius:12px;padding:15px;margin-bottom:10px}
+.report-card h3{margin:0 0 7px}.report-meta{color:#999;font-size:12px;margin-bottom:8px}.report-card p{color:#ccc;line-height:1.7;margin:6px 0}
+
 @media(max-width:700px){.app{display:block}.side{width:100%;border-left:0;border-bottom:1px solid #29292f}.nav{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}.nav button{margin:0}.main{padding:18px}}
 </style>
 </head>
@@ -28,22 +53,34 @@
 <button data-page="home">الرئيسية</button><button data-page="search">البحث</button>
 <button data-page="citizens">المواطنين</button><button data-page="vehicles">المركبات</button>
 <button data-page="reports">البلاغات</button><button data-page="cases">القضايا</button>
-<button data-page="sectors">▾ القطاعات</button><button data-page="settings">الإعدادات</button>
+<button data-page="sectors">▾ القطاعات</button><button id="loginNav" data-page="login">🔐 تسجيل الدخول</button><button id="serviceNav" data-page="service">🟢 التواجد</button><button id="logoutNav" data-page="logout" onclick="logoutMDT();return false;">🚪 تسجيل الخروج</button>
 </div></aside>
 <main class="main">
 <div class="top"><h1 id="pageTitle">الرئيسية</h1></div>
 
+
+<section id="login" class="page">
+<div class="card login-card">
+<div class="login-icon">🔐</div>
+<h2>تسجيل الدخول</h2>
+<p class="muted">أدخل رقم الـ ID الخاص بك للدخول إلى نظام DC MDT</p>
+<input id="loginId" inputmode="numeric" maxlength="4" placeholder="رقم الـ ID" oninput="this.value=this.value.replace(/\D/g,'')">
+<button class="login-btn" onclick="loginMDT()">تسجيل الدخول</button>
+<div id="loginMsg" class="login-msg"></div><button class="back" style="margin-top:8px" onclick="logoutMDT()">تسجيل الخروج</button>
+</div>
+</section>
+
 <section id="home" class="page active">
 <div class="grid">
-<div class="stat">المواطنين<b>7</b></div><div class="stat">المركبات<b>7</b></div>
+<div class="stat">المواطنين<b>8</b></div><div class="stat">المركبات<b>8</b></div>
 <div class="stat">البلاغات<b>0</b></div><div class="stat">القضايا<b>0</b></div>
 </div>
 <div class="card"><h2>آخر المواطنين</h2>
-<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>
+<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div><div class="item" onclick="openAbdulaziz()"><b>6791 — عبدالعزيز الساعدي</b><br><small class="muted">العمر: 32 · شرطة DC · Classic Car · اللوحة: HH OS 81</small></div>
 <div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div><div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>
 <div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>
-<div class="item" onclick="openLeon()"><b>1923 — ليون العنزي</b><br><small class="muted">العمر: 23 · مواطن · BMW · اللوحة: HH WT 70</small></div>
-<div class="item" onclick="openSaddam()"><b>8952 — صدام البلوي</b><br><small class="muted">العمر: 23 · LSPD · Stuttgart GMA C63 Facelift · اللوحة: R DF 11</small></div>
+<div class="item" onclick="openLeon()"><b>1923 — ليون العنزي</b><br><small class="muted">العمر: 23 · DC RA7 · BMW · اللوحة: HH WT 70</small></div>
+<div class="item" onclick="openSaddam()"><b>8952 — صدام البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · Stuttgart GMA C63 Facelift · اللوحة: R DF 11</small></div>
 </div></section>
 
 <section id="search" class="page"><div class="card"><h2>البحث</h2>
@@ -52,11 +89,11 @@
 
 <section id="citizens" class="page"><div class="card"><h2>المواطنين</h2>
 <div class="item" onclick="openAbuNasser()"><b>1111 — ابو ناصر</b><br><small class="muted">العمر: 42 · Mercedes · اللوحة: ????</small></div>
-<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>
+<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div><div class="item" onclick="openAbdulaziz()"><b>6791 — عبدالعزيز الساعدي</b><br><small class="muted">العمر: 32 · شرطة DC · Classic Car · اللوحة: HH OS 81</small></div>
 <div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div><div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>
 <div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>
-<div class="item" onclick="openLeon()"><b>1923 — ليون العنزي</b><br><small class="muted">العمر: 23 · مواطن · BMW · اللوحة: HH WT 70</small></div>
-<div class="item" onclick="openSaddam()"><b>8952 — صدام البلوي</b><br><small class="muted">العمر: 23 · LSPD · Stuttgart GMA C63 Facelift · اللوحة: R DF 11</small></div>
+<div class="item" onclick="openLeon()"><b>1923 — ليون العنزي</b><br><small class="muted">العمر: 23 · DC RA7 · BMW · اللوحة: HH WT 70</small></div>
+<div class="item" onclick="openSaddam()"><b>8952 — صدام البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · Stuttgart GMA C63 Facelift · اللوحة: R DF 11</small></div>
 </div></section>
 
 <section id="citizen" class="page"><div class="card">
@@ -70,6 +107,15 @@
     </div>
 </div></section>
 
+<section id="abdulaziz" class="page"><div class="card">
+<button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — عبدالعزيز الساعدي</h2>
+<div class="grid">
+<div class="field"><span>الاسم</span><b>عبدالعزيز الساعدي</b></div><div class="field"><span>العمر</span><b>32</b></div>
+<div class="field"><span>الهوية</span><b>6791</b></div><div class="field"><span>الوظيفة</span><b>شرطة DC</b></div>
+<div class="field"><span>عدد المركبات</span><b>1</b></div></div>
+<div class="card" style="margin-top:15px"><h3>المركبات</h3>
+<div class="item"><b>Classic Car</b><br><small class="muted">اللوحة: HH OS 81</small></div>
+</div></div></section>
 <section id="saqr" class="page"><div class="card">
 <button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — صقر شليويح</h2>
 <div class="grid">
@@ -105,7 +151,7 @@
 <button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — ليون العنزي</h2>
 <div class="grid">
 <div class="field"><span>الاسم</span><b>ليون العنزي</b></div><div class="field"><span>العمر</span><b>23</b></div>
-<div class="field"><span>الهوية</span><b>1923</b></div><div class="field"><span>الوظيفة</span><b>مواطن</b></div>
+<div class="field"><span>الهوية</span><b>1923</b></div><div class="field"><span>الوظيفة</span><b>DC RA7</b></div>
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>BMW</b><br><small class="muted">اللوحة: HH WT 70</small></div>
@@ -115,7 +161,7 @@
 <button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — صدام البلوي</h2>
 <div class="grid">
 <div class="field"><span>الاسم</span><b>صدام البلوي</b></div><div class="field"><span>العمر</span><b>23</b></div>
-<div class="field"><span>الهوية</span><b>8952</b></div><div class="field"><span>الوظيفة</span><b>LSPD</b></div>
+<div class="field"><span>الهوية</span><b>8952</b></div><div class="field"><span>الوظيفة</span><b>شرطة DC</b></div>
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>Stuttgart GMA C63 Facelift</b><br><small class="muted">اللوحة: R DF 11</small></div>
@@ -136,26 +182,244 @@
     <div class="item"><b>BMW</b><br><small class="muted">اللوحة: HH HZ 5 · المالك: فرناس بيندل</small></div><div class="item"><b>Mercedes</b><br><small class="muted">اللوحة: ???? · المالك: ابو ناصر</small></div>
     <div class="item"><b>BMW</b><br><small class="muted">اللوحة: HH WT 70 · المالك: ليون العنزي</small></div>
     <div class="item"><b>Stuttgart GMA C63 Facelift</b><br><small class="muted">اللوحة: R DF 11 · المالك: صدام البلوي</small></div>
+    <div class="item"><b>Classic Car</b><br><small class="muted">اللوحة: HH OS 81 · المالك: عبدالعزيز الساعدي</small></div>
     </div></section>
-<section id="reports" class="page"><div class="card"><h2>البلاغات</h2><div class="empty">لا توجد بلاغات.</div></div></section>
+
+<section id="reports" class="page">
+<div class="card">
+<h2>البلاغات</h2>
+<div id="reportLoginNotice" class="empty">يجب تسجيل الدخول أولاً لإضافة البلاغات.</div>
+<div id="reportsApp" style="display:none">
+  <div class="card" style="margin-top:12px">
+    <h3>إضافة بلاغ</h3>
+    <div class="grid">
+      <div class="field"><span>عنوان البلاغ</span><input id="reportTitle" class="search" placeholder="مثال: سرقة مركبة"></div>
+      <div class="field"><span>الموقع</span><input id="reportLocation" class="search" placeholder="الموقع"></div>
+    </div>
+    <div class="field" style="margin-top:10px"><span>التفاصيل</span><textarea id="reportDetails" class="search" rows="4" placeholder="اكتب تفاصيل البلاغ..."></textarea></div>
+    <button class="login-btn" onclick="addReport()">إضافة البلاغ</button>
+    <div id="reportMsg" class="login-msg"></div>
+  </div>
+  <div id="reportsList" style="margin-top:12px"></div>
+</div>
+</div>
+</section>
+
 <section id="cases" class="page"><div class="card"><h2>القضايا</h2><div class="empty">لا توجد قضايا.</div></div></section>
 <section id="sectors" class="page"><div class="card"><h2>القطاعات</h2>
-<div class="item"><b>LSPD</b><br><small class="muted">السبيـدي</small></div>
-<div class="card" style="margin-top:10px"><div class="item"><b>غياث البلوي</b><br><small class="muted">الرتبة: فريق أول</small></div><div class="item"><b>صدام البلوي</b><br><small class="muted">الرتبة: ملازم أول</small></div></div>
+<div class="item"><b>شرطة DC</b><br><small class="muted">Police DC</small></div>
+<div class="card" style="margin-top:10px"><div class="item"><b>غياث البلوي</b><br><small class="muted">الرتبة: فريق أول</small></div><div class="item"><b>عبدالعزيز الساعدي</b><br><small class="muted">الرتبة: فريق</small></div><div class="item"><b>صدام البلوي</b><br><small class="muted">الرتبة: ملازم أول</small></div></div>
 <div class="item"><b>CIA</b><br><small class="muted">Central Intelligence Agency</small></div>
 <div class="card" style="margin-top:10px"><div class="item"><b>فرناس بيندل</b><br><small class="muted">الرتبة: فريق أول</small></div><div class="item"><b>ماتيو تشاندلر</b><br><small class="muted">الرتبة: فريق</small></div></div>
 <div class="item"><b>RA7</b></div>
-<div class="card" style="margin-top:10px"><div class="item"><b>صقر شليويح</b><br><small class="muted">الرتبة: رائد</small></div></div>
+<div class="card" style="margin-top:10px"><div class="item"><b>صقر شليويح</b><br><small class="muted">الرتبة: رائد</small></div><div class="item"><b>ليون العنزي</b><br><small class="muted">الرتبة: رقيب أول</small></div></div>
 </div></section>
+
+
+<section id="service" class="page">
+<div class="card">
+<h2>الخدمة</h2>
+<div id="serviceWelcome" class="login-user">سجل الدخول أولاً.</div>
+<div id="serviceControls" style="display:none">
+  <p class="muted">اختر حالتك الحالية:</p>
+  <div class="grid">
+    <button class="login-btn" style="background:#1f9d55" onclick="setService('متواجد','green')">🟢 متواجد</button>
+    <button class="login-btn" style="background:#d99a00" onclick="setService('مشغول','yellow')">🟡 مشغول</button>
+    <button class="login-btn" style="background:#d32f2f" onclick="setService('خارج الخدمة','red')">🔴 خارج الخدمة</button>
+  </div>
+  <div id="serviceStatus" class="login-user">الحالة الحالية: —</div>
+</div>
+</div>
+</section>
+
 <section id="settings" class="page"><div class="card"><h2>الإعدادات</h2><p class="muted">إعدادات MDT v1</p></div></section>
 
 </main></div>
 <script>
-const titles={home:'الرئيسية',search:'البحث',citizens:'المواطنين',citizen:'ملف غياث البلوي',saqr:'ملف صقر شليويح',farnas:'ملف فرناس بيندل', 'abu-nasser':'ملف ابو ناصر',mateo:'ملف ماتيو تشاندلر',leon:'ملف ليون العنزي',saddam:'ملف صدام البلوي',vehicles:'المركبات',reports:'البلاغات',cases:'القضايا',sectors:'القطاعات',settings:'الإعدادات'};
-function go(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page).classList.add('active');document.getElementById('pageTitle').textContent=titles[page]||'MDT';document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo(0,0)}
-function openCitizen(){go('citizen')}function openSaqr(){go('saqr')}function openFarnas(){go('farnas')}function openAbuNasser(){go('abu-nasser')}function openMateo(){go('mateo')}function openLeon(){go('leon')}function openSaddam(){go('saddam')}
-function searchCitizen(){let q=document.getElementById('searchBox').value.trim().toLowerCase().replace(/\s+/g,'');let r=document.getElementById('searchResults');if(!q){r.innerHTML='';return}let s='';let match=(...v)=>v.some(x=>x.toLowerCase().replace(/\s+/g,'').includes(q));if(match('غياث البلوي','0010','Bentley','R DF 11'))s+='<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>';if(match('صقر شليويح','7890','BMW','93 HH MN'))s+='<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div>';if(match('فرناس بيندل','5720','BMW','HH HZ 5'))s+='<div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>';if(match('ماتيو تشاندلر','1670','Lamborghini','HH DZ 16'))s+='<div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>';if(match('ليون العنزي','1923','BMW','HH WT 70','مواطن'))s+='<div class="item" onclick="openLeon()"><b>1923 — ليون العنزي</b><br><small class="muted">العمر: 23 · مواطن · BMW · اللوحة: HH WT 70</small></div>';if(match('صدام البلوي','8952','Stuttgart GMA C63 Facelift','R DF 11','LSPD'))s+='<div class="item" onclick="openSaddam()"><b>8952 — صدام البلوي</b><br><small class="muted">العمر: 23 · LSPD · Stuttgart GMA C63 Facelift · اللوحة: R DF 11</small></div>';if(match('ابو ناصر','1111','Mercedes','????'))s+='<div class="item" onclick="openAbuNasser()"><b>1111 — ابو ناصر</b><br><small class="muted">العمر: 42 · Mercedes · اللوحة: ????</small></div>';r.innerHTML=s||'<div class="empty">لا توجد نتائج.</div>'}
-document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
-document.querySelector('.nav button[data-page="home"]').classList.add('active');
+const titles={login:'تسجيل الدخول',home:'الرئيسية',search:'البحث',citizens:'المواطنين',citizen:'ملف غياث البلوي',abdulaziz:'ملف عبدالعزيز الساعدي',saqr:'ملف صقر شليويح',farnas:'ملف فرناس بيندل', 'abu-nasser':'ملف ابو ناصر',mateo:'ملف ماتيو تشاندلر',leon:'ملف ليون العنزي',saddam:'ملف صدام البلوي',vehicles:'المركبات',reports:'البلاغات',cases:'القضايا',sectors:'القطاعات',settings:'الإعدادات',service:'الخدمة'};
+
+
+const mdtUsers={
+  '0010':'غياث البلوي',
+  '6791':'عبدالعزيز الساعدي',
+  '7890':'صقر شليويح',
+  '5720':'فرناس بيندل',
+  '1670':'ماتيو تشاندلر',
+  '1923':'ليون العنزي',
+  '8952':'صدام البلوي',
+  '1111':'ابو ناصر'
+};
+
+const mdtRanks={
+  '0010':'فريق أول',
+  '6791':'فريق',
+  '7890':'رائد',
+  '5720':'فريق أول',
+  '1670':'فريق',
+  '1923':'رقيب أول',
+  '8952':'ملازم أول',
+  '1111':'غير محددة'
+};
+
+function currentUser(){
+  const id=localStorage.getItem('dc_mdt_logged_id');
+  return id && mdtUsers[id] ? {id:id,name:mdtUsers[id],rank:mdtRanks[id] || 'غير محددة'} : null;
+}
+
+function loginMDT(){
+  const id=document.getElementById('loginId').value.trim();
+  const msg=document.getElementById('loginMsg');
+  if(!id){
+    msg.style.color='#e31b23';
+    msg.textContent='أدخل رقم الـ ID أولاً';
+    return;
+  }
+  if(!mdtUsers[id]){
+    msg.style.color='#e31b23';
+    msg.textContent='رقم الـ ID غير صحيح أو غير مسجل في النظام';
+    return;
+  }
+  localStorage.setItem('dc_mdt_logged_id',id);
+  msg.style.color='#55d66b';
+  msg.textContent='تم تسجيل الدخول بنجاح';
+  updateLoginUI();
+  setTimeout(()=>go('home'),450);
+}
+
+function logoutMDT(){
+  localStorage.removeItem('dc_mdt_logged_id');
+  localStorage.removeItem('dc_mdt_service');
+  updateLoginUI();
+  go('login');
+}
+
+function updateLoginUI(){
+  const user=currentUser();
+  const notice=document.getElementById('reportLoginNotice');
+  const app=document.getElementById('reportsApp');
+  const controls=document.getElementById('serviceControls');
+  const welcome=document.getElementById('serviceWelcome');
+  const status=document.getElementById('serviceStatus');
+  const loginNav=document.getElementById('loginNav');
+  const serviceNav=document.getElementById('serviceNav');
+  const logoutNav=document.getElementById('logoutNav');
+
+  if(user){
+    if(loginNav) loginNav.style.display='none';
+    if(serviceNav) serviceNav.style.display='block';
+    if(logoutNav) logoutNav.style.display='block';
+    const loginMsg=document.getElementById('loginMsg');
+    if(loginMsg){
+      loginMsg.style.color='#55d66b';
+      loginMsg.textContent='مرحباً بك، '+user.name;
+    }
+    if(notice) notice.style.display='none';
+    if(app) app.style.display='block';
+    if(controls) controls.style.display='block';
+    if(welcome) welcome.innerHTML='مرحباً بك، <b>'+user.name+'</b> 👋<br><small class="muted">ID: '+user.id+'</small>';
+    if(status){
+      const saved=localStorage.getItem('dc_mdt_service');
+      status.textContent='الحالة الحالية: '+(saved || 'لم تحدد بعد');
+    }
+    renderReports();
+  }else{
+    if(loginNav) loginNav.style.display='block';
+    if(serviceNav) serviceNav.style.display='none';
+    if(logoutNav) logoutNav.style.display='none';
+    if(notice) notice.style.display='block';
+    if(app) app.style.display='none';
+    if(controls) controls.style.display='none';
+    if(welcome) welcome.textContent='سجل الدخول أولاً.';
+  }
+}
+
+function setService(state,color){
+  if(!currentUser()){
+    go('login');
+    return;
+  }
+  localStorage.setItem('dc_mdt_service',state);
+  const status=document.getElementById('serviceStatus');
+  if(status) status.innerHTML='الحالة الحالية: <b>'+state+'</b>';
+}
+
+function addReport(){
+  const user=currentUser();
+  const msg=document.getElementById('reportMsg');
+  if(!user){
+    if(msg){msg.style.color='#e31b23';msg.textContent='يجب تسجيل الدخول أولاً';}
+    return;
+  }
+  const title=document.getElementById('reportTitle').value.trim();
+  const location=document.getElementById('reportLocation').value.trim();
+  const details=document.getElementById('reportDetails').value.trim();
+
+  if(!title || !location || !details){
+    msg.style.color='#e31b23';
+    msg.textContent='عبّئ عنوان البلاغ والموقع والتفاصيل';
+    return;
+  }
+
+  const reports=JSON.parse(localStorage.getItem('dc_mdt_reports') || '[]');
+  reports.unshift({
+    title:title,
+    location:location,
+    details:details,
+    author:user.name,
+    rank:user.rank,
+    id:user.id,
+    time:new Date().toLocaleString('ar-SA')
+  });
+  localStorage.setItem('dc_mdt_reports',JSON.stringify(reports));
+
+  document.getElementById('reportTitle').value='';
+  document.getElementById('reportLocation').value='';
+  document.getElementById('reportDetails').value='';
+  msg.style.color='#55d66b';
+  msg.textContent='تم حفظ البلاغ بنجاح';
+  renderReports();
+}
+
+function renderReports(){
+  const box=document.getElementById('reportsList');
+  if(!box) return;
+  const reports=JSON.parse(localStorage.getItem('dc_mdt_reports') || '[]');
+  if(!reports.length){
+    box.innerHTML='<div class="empty">لا توجد بلاغات محفوظة.</div>';
+    return;
+  }
+  box.innerHTML=reports.map((r,i)=>
+    '<div class="report-card">'+
+    '<h3>'+escapeHTML(r.title)+'</h3>'+
+    '<div class="report-meta">الموقع: '+escapeHTML(r.location)+' · بواسطة: <b>'+escapeHTML(r.author)+'</b> · الرتبة: <b>'+escapeHTML(r.rank || 'غير محددة')+'</b> · '+escapeHTML(r.time)+'</div>'+
+    '<p>'+escapeHTML(r.details)+'</p>'+
+    '<button class="back" onclick="deleteReport('+i+')">حذف البلاغ</button>'+
+    '</div>'
+  ).join('');
+}
+
+function deleteReport(index){
+  if(!currentUser()) return;
+  const reports=JSON.parse(localStorage.getItem('dc_mdt_reports') || '[]');
+  reports.splice(index,1);
+  localStorage.setItem('dc_mdt_reports',JSON.stringify(reports));
+  renderReports();
+}
+
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+}
+
+function go(page){if((page==='service'||page==='reports')&&!currentUser()){page='login';}document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page).classList.add('active');document.getElementById('pageTitle').textContent=titles[page]||'MDT';document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo(0,0)}
+function openCitizen(){go('citizen')}function openAbdulaziz(){go('abdulaziz')}function openSaqr(){go('saqr')}function openFarnas(){go('farnas')}function openAbuNasser(){go('abu-nasser')}function openMateo(){go('mateo')}function openLeon(){go('leon')}function openSaddam(){go('saddam')}
+
+function showMapInfo(title,description){
+  const box=document.getElementById('mapInfo');
+  box.innerHTML='<h3>'+title+'</h3><p>'+description+'</p>';
+}
+
+function searchCitizen(){let q=document.getElementById('searchBox').value.trim().toLowerCase().replace(/\s+/g,'');let r=document.getElementById('searchResults');if(!q){r.innerHTML='';return}let s='';let match=(...v)=>v.some(x=>x.toLowerCase().replace(/\s+/g,'').includes(q));if(match('غياث البلوي','0010','Bentley','R DF 11'))s+='<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>';if(match('عبدالعزيز الساعدي','6791','Classic Car','HH OS 81','شرطة DC'))s+='<div class="item" onclick="openAbdulaziz()"><b>6791 — عبدالعزيز الساعدي</b><br><small class="muted">العمر: 32 · شرطة DC · Classic Car · اللوحة: HH OS 81</small></div>';if(match('صقر شليويح','7890','BMW','93 HH MN'))s+='<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div>';if(match('فرناس بيندل','5720','BMW','HH HZ 5'))s+='<div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>';if(match('ماتيو تشاندلر','1670','Lamborghini','HH DZ 16'))s+='<div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>';if(match('ليون العنزي','1923','BMW','HH WT 70','DC RA7'))s+='<div class="item" onclick="openLeon()"><b>1923 — ليون العنزي</b><br><small class="muted">العمر: 23 · DC RA7 · BMW · اللوحة: HH WT 70</small></div>';if(match('صدام البلوي','8952','Stuttgart GMA C63 Facelift','R DF 11','شرطة DC'))s+='<div class="item" onclick="openSaddam()"><b>8952 — صدام البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · Stuttgart GMA C63 Facelift · اللوحة: R DF 11</small></div>';if(match('ابو ناصر','1111','Mercedes','????'))s+='<div class="item" onclick="openAbuNasser()"><b>1111 — ابو ناصر</b><br><small class="muted">العمر: 42 · Mercedes · اللوحة: ????</small></div>';r.innerHTML=s||'<div class="empty">لا توجد نتائج.</div>'}
+document.querySelectorAll('.nav button').forEach(b=>{if(b.dataset.page!=='logout'){b.onclick=()=>go(b.dataset.page);}});
+updateLoginUI();go('home');
 </script>
 </body></html>
