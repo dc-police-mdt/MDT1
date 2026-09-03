@@ -35,13 +35,13 @@
 
 <section id="home" class="page active">
 <div class="grid">
-<div class="stat">المواطنين<b>3</b></div><div class="stat">المركبات<b>3</b></div>
+<div class="stat">المواطنين<b>4</b></div><div class="stat">المركبات<b>4</b></div>
 <div class="stat">البلاغات<b>0</b></div><div class="stat">القضايا<b>0</b></div>
 </div>
 <div class="card"><h2>آخر المواطنين</h2>
 <div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>
-<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div>
-<div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>
+<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div><div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>
+<div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>
 </div></section>
 
 <section id="search" class="page"><div class="card"><h2>البحث</h2>
@@ -50,8 +50,8 @@
 
 <section id="citizens" class="page"><div class="card"><h2>المواطنين</h2>
 <div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>
-<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div>
-<div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>
+<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div><div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>
+<div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>
 </div></section>
 
 <section id="citizen" class="page"><div class="card">
@@ -84,14 +84,23 @@
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>BMW</b><br><small class="muted">اللوحة: HH HZ 5</small></div>
+</div></div></section>
+<section id="mateo" class="page"><div class="card">
+<button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — ماتيو تشاندلر</h2>
+<div class="grid">
+<div class="field"><span>الاسم</span><b>ماتيو تشاندلر</b></div><div class="field"><span>العمر</span><b>30</b></div>
+<div class="field"><span>الهوية</span><b>1670</b></div><div class="field"><span>الوظيفة</span><b>DC CIA</b></div>
+<div class="field"><span>عدد المركبات</span><b>1</b></div></div>
+<div class="card" style="margin-top:15px"><h3>المركبات</h3>
+<div class="item"><b>Lamborghini</b><br><small class="muted">اللوحة: HH DZ 16 · أكثر من سيارة</small></div>
 </div>
 </div></section>
 
 <section id="vehicles" class="page"><div class="card"><h2>المركبات</h2>
     <div class="item"><b>Bentley</b><br><small class="muted">اللوحة: R DF 11 · المالك: غياث البلوي</small></div>
     <div class="item"><b>BMW</b><br><small class="muted">اللوحة: 93 HH MN · المالك: صقر شليويح</small></div>
-    <div class="item"><b>BMW</b><br><small class="muted">اللوحة: HH HZ 5 · المالك: فرناس بيندل</small></div>
-    </div></section>
+    <div class="item"><b>Lamborghini</b><br><small class="muted">اللوحة: HH DZ 16 · المالك: ماتيو تشاندلر · وأكثر من سيارة</small></div>
+    <div class="item"><b>BMW</b><br><small class="muted">اللوحة: HH HZ 5 · المالك: فرناس بيندل</small></div></div></section>
 <section id="reports" class="page"><div class="card"><h2>البلاغات</h2><div class="empty">لا توجد بلاغات.</div></div></section>
 <section id="cases" class="page"><div class="card"><h2>القضايا</h2><div class="empty">لا توجد قضايا.</div></div></section>
 <section id="members" class="page"><div class="card"><h2>الأفراد</h2><div class="empty">لا توجد بيانات إضافية.</div></div></section>
@@ -99,10 +108,10 @@
 
 </main></div>
 <script>
-const titles={home:'الرئيسية',search:'البحث',citizens:'المواطنين',citizen:'ملف غياث البلوي',saqr:'ملف صقر شليويح',farnas:'ملف فرناس بيندل',vehicles:'المركبات',reports:'البلاغات',cases:'القضايا',members:'الأفراد',settings:'الإعدادات'};
+const titles={home:'الرئيسية',search:'البحث',citizens:'المواطنين',citizen:'ملف غياث البلوي',saqr:'ملف صقر شليويح',farnas:'ملف فرناس بيندل',mateo:'ملف ماتيو تشاندلر',vehicles:'المركبات',reports:'البلاغات',cases:'القضايا',members:'الأفراد',settings:'الإعدادات'};
 function go(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page).classList.add('active');document.getElementById('pageTitle').textContent=titles[page]||'MDT';document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo(0,0)}
-function openCitizen(){go('citizen')}function openSaqr(){go('saqr')}function openFarnas(){go('farnas')}
-function searchCitizen(){let q=document.getElementById('searchBox').value.trim().toLowerCase().replace(/\\s+/g,'');let r=document.getElementById('searchResults');if(!q){r.innerHTML='';return}let s='';let match=(...v)=>v.some(x=>x.toLowerCase().replace(/\\s+/g,'').includes(q));if(match('غياث البلوي','0010','Bentley','R DF 11'))s+='<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>';if(match('صقر شليويح','7890','BMW','93 HH MN'))s+='<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div>';if(match('فرناس بيندل','5720','BMW','HH HZ 5'))s+='<div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>';r.innerHTML=s||'<div class="empty">لا توجد نتائج.</div>'}
+function openCitizen(){go('citizen')}function openSaqr(){go('saqr')}function openFarnas(){go('farnas')}function openMateo(){go('mateo')}
+function searchCitizen(){let q=document.getElementById('searchBox').value.trim().toLowerCase().replace(/\\s+/g,'');let r=document.getElementById('searchResults');if(!q){r.innerHTML='';return}let s='';let match=(...v)=>v.some(x=>x.toLowerCase().replace(/\\s+/g,'').includes(q));if(match('غياث البلوي','0010','Bentley','R DF 11'))s+='<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>';if(match('صقر شليويح','7890','BMW','93 HH MN'))s+='<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div>';if(match('فرناس بيندل','5720','BMW','HH HZ 5'))s+='<div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>';if(match('ماتيو تشاندلر','1670','Lamborghini','HH DZ 16'))s+='<div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>';r.innerHTML=s||'<div class="empty">لا توجد نتائج.</div>'}
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
 document.querySelector('.nav button[data-page="home"]').classList.add('active');
 </script>
