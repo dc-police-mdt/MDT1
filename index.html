@@ -132,4 +132,9 @@ function searchCitizen(){let q=document.getElementById('searchBox').value.trim()
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
 document.querySelector('.nav button[data-page="home"]').classList.add('active');
 </script>
+
+<div class="creator-credit">creator : @unm.b</div>
+<style>
+.creator-credit{position:fixed;left:10px;bottom:8px;font-size:10px;color:rgba(255,255,255,.45);font-weight:500;z-index:9999;pointer-events:none;direction:ltr;}
+</style>
 </body></html>
