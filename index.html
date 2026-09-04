@@ -3,56 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DC MDT v1</title>
+<title>Ministry of Interior - DC City</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#0b0b0d;color:#eee}
-.app{display:flex;min-height:100vh}.side{width:230px;background:#111116;border-left:1px solid #29292f;padding:22px 14px}
-.logo{text-align:center;font-size:27px;font-weight:900;margin-bottom:25px}.logo span{color:#e31b23}
-.nav button{width:100%;padding:13px;margin:5px 0;background:#18181e;border:1px solid #29292f;border-radius:10px;color:#ddd;text-align:right;cursor:pointer;font-size:15px}
-.nav button:hover,.nav button.active{background:#e31b23;color:#fff}.profile-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:15px;border-top:1px solid #29292f;direction:rtl}.profile-actions button{flex:1;min-width:150px}.violation-btn{background:#8b5cf6!important}.violation-btn:hover{background:#7c3aed!important}.main{flex:1;padding:28px;max-width:1100px;margin:auto;width:100%}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.top h1{margin:0}.tag{background:#e31b23;padding:8px 13px;border-radius:9px;font-weight:bold}
-.page{display:none}.page.active{display:block}.card{background:#141419;border:1px solid #29292f;border-radius:15px;padding:20px;margin-bottom:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}.stat{background:#18181e;padding:20px;border-radius:13px;border:1px solid #29292f}.stat b{font-size:28px;display:block;margin-top:8px}
-.item{background:#18181e;border:1px solid #29292f;border-radius:12px;padding:16px;margin:10px 0;cursor:pointer}.item:hover{border-color:#e31b23}
-.muted{color:#999}.back{background:#e31b23;color:#fff;border:0;padding:10px 16px;border-radius:9px;cursor:pointer}
-.field{background:#18181e;border-radius:11px;padding:15px}.field span{display:block;color:#999;font-size:13px;margin-bottom:7px}
-.empty{color:#aaa;text-align:center;padding:25px}.search{width:100%;padding:14px;border-radius:10px;border:1px solid #333;background:#0f0f13;color:#fff;font-size:15px;margin-bottom:15px}
-
-.map-wrap{background:#0f1015;border:1px solid #29292f;border-radius:15px;padding:10px;overflow:hidden}
-.map-canvas{position:relative;width:100%;line-height:0}
-.map-canvas img{width:100%;height:auto;display:block;border-radius:10px}
-.map-pin{position:absolute;transform:translate(-50%,-50%);width:32px;height:32px;border:2px solid #fff;border-radius:50%;background:rgba(227,27,35,.92);color:#fff;font-size:9px;font-weight:900;line-height:28px;text-align:center;cursor:pointer;z-index:4;box-shadow:0 2px 8px rgba(0,0,0,.55)}
-.map-pin:hover{transform:translate(-50%,-50%) scale(1.12)}
-.map-info{margin-top:12px;background:#18181e;border:1px solid #29292f;border-radius:12px;padding:16px;line-height:1.8}
-.map-info h3{margin:0 0 6px}.map-info p{margin:0;color:#bbb}
-.map-hint{margin:10px 0 0;color:#999;font-size:13px}
-
-
-.login-card{max-width:520px;margin:40px auto;text-align:center}
-.login-card .login-icon{font-size:46px;margin-bottom:10px}
-.login-card input{width:100%;box-sizing:border-box;text-align:center;font-size:20px;padding:14px;border-radius:10px;border:1px solid #333;background:#101116;color:#fff}
-.login-btn{width:100%;margin-top:12px;padding:14px;border:0;border-radius:10px;background:#e31b23;color:#fff;font-size:18px;font-weight:900;cursor:pointer}
-.login-btn:active{transform:scale(.99)}
-.login-msg{margin-top:12px;min-height:24px;font-weight:700}
-.login-user{margin-top:14px;padding:12px;border-radius:10px;background:#17181e;border:1px solid #2b2c32}
-
-
-.login-user{padding:13px;border-radius:10px;background:#17181e;border:1px solid #2b2c32}
-textarea.search{resize:vertical;font-family:inherit}
-.report-card{background:#18181e;border:1px solid #29292f;border-radius:12px;padding:15px;margin-bottom:10px}
-.report-card h3{margin:0 0 7px}.report-meta{color:#999;font-size:12px;margin-bottom:8px}.report-card p{color:#ccc;line-height:1.7;margin:6px 0}
-
-@media(max-width:700px){.app{display:block}.side{width:100%;border-left:0;border-bottom:1px solid #29292f}.nav{display:grid;grid-template-columns:repeat(2,1fr);gap:5px}.nav button{margin:0}.main{padding:18px}}
+*{box-sizing:border-box}
+:root{--bg:#07111f;--side:#091525;--panel:#0d1b2d;--panel2:#10233a;--line:#1c3550;--blue:#3d8cff;--blue2:#6aa9ff;--text:#edf4fc;--muted:#91a4b9;--danger:#e45b68;--warn:#d6a84f;--ok:#42c98a}
+body{margin:0;font-family:Arial,"Tahoma",sans-serif;background:radial-gradient(circle at 75% -10%,#12345a 0,#07111f 38%,#050d18 100%);color:var(--text);min-height:100vh}
+.app{display:flex;min-height:100vh}.side{width:250px;flex:0 0 250px;background:rgba(7,17,31,.96);border-left:1px solid var(--line);padding:22px 15px;box-shadow:0 0 35px rgba(0,0,0,.22);position:sticky;top:0;height:100vh;overflow:auto}
+.logo{text-align:center;font-size:20px;font-weight:900;letter-spacing:.4px;margin:2px 0 28px;padding:15px 8px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#0e2137,#091625);box-shadow:inset 0 1px rgba(255,255,255,.03)}.logo span{color:#8fc2ff}
+.nav{display:flex;flex-direction:column;gap:7px}.nav button{width:100%;padding:12px 14px;background:transparent;border:1px solid transparent;border-radius:11px;color:#b9c8d8;text-align:right;cursor:pointer;font-size:14px;transition:.18s;font-family:inherit}.nav button:hover{background:#0e2136;color:#eaf3ff;border-color:#173551}.nav button.active{background:linear-gradient(90deg,#12345a,#0f2741);color:#fff;border-color:#24557f;box-shadow:inset -3px 0 var(--blue)}
+.profile-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);direction:rtl}.profile-actions button{flex:1;min-width:150px}
+.violation-btn{background:#714f92!important}.violation-btn:hover{background:#835cad!important}.points-btn{background:linear-gradient(135deg,#245f9f,#183f6a)!important;border-color:#397fc3!important}.points-btn:hover{filter:brightness(1.12)}
+.main{flex:1;padding:28px 34px 50px;max-width:1250px;margin:auto;width:100%}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid rgba(35,61,87,.65)}.top h1{margin:0;font-size:27px}.top:after{content:'SYSTEM ONLINE  •  DC CITY';font-size:12px;font-weight:700;letter-spacing:.7px;color:#79d7aa;background:rgba(66,201,138,.08);border:1px solid rgba(66,201,138,.22);padding:8px 12px;border-radius:999px}
+.page{display:none}.page.active{display:block}.card{background:linear-gradient(145deg,rgba(14,29,47,.96),rgba(9,22,37,.96));border:1px solid var(--line);border-radius:17px;padding:20px;margin-bottom:17px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.stat{background:linear-gradient(145deg,#10243b,#0c1b2d);padding:20px;border-radius:15px;border:1px solid #1b3855;position:relative;overflow:hidden}.stat:after{content:'';position:absolute;left:-25px;bottom:-35px;width:100px;height:100px;background:rgba(61,140,255,.06);border-radius:50%}.stat b{font-size:30px;display:block;margin-top:9px;color:#f4f8fd}.item{background:#0c1d31;border:1px solid #1a3550;border-radius:13px;padding:16px;margin:10px 0;cursor:pointer;transition:.18s}.item:hover{border-color:#3b79b1;background:#102640;transform:translateY(-1px)}
+.muted{color:var(--muted)}.back{background:#18314c;color:#eaf3ff;border:1px solid #284b6d;padding:10px 16px;border-radius:10px;cursor:pointer}.field{background:#0b1b2d;border:1px solid #19354f;border-radius:12px;padding:15px}.field span{display:block;color:var(--muted);font-size:13px;margin-bottom:7px}.empty{color:#91a4b9;text-align:center;padding:25px}.search{width:100%;padding:14px;border-radius:11px;border:1px solid #21405d;background:#081625;color:#fff;font-size:15px;margin-bottom:15px;outline:none}.search:focus{border-color:#3d8cff;box-shadow:0 0 0 3px rgba(61,140,255,.1)}
+.login-card{max-width:520px;margin:40px auto;text-align:center}.login-card .login-icon{font-size:46px;margin-bottom:10px}.login-card input{width:100%;box-sizing:border-box;text-align:center;font-size:20px;padding:14px;border-radius:11px;border:1px solid #21405d;background:#081625;color:#fff}.login-btn{width:100%;margin-top:12px;padding:14px;border:1px solid #377dc5;border-radius:11px;background:linear-gradient(135deg,#2365a8,#174b80);color:#fff;font-size:17px;font-weight:900;cursor:pointer}.login-btn:hover{filter:brightness(1.08)}.login-btn:active{transform:scale(.99)}.login-msg{margin-top:12px;min-height:24px;font-weight:700}.login-user{margin-top:14px;padding:13px;border-radius:11px;background:#0c1d31;border:1px solid #1c3852}textarea.search{resize:vertical;font-family:inherit}.report-card{background:#0c1d31;border:1px solid #1a3550;border-radius:13px;padding:15px;margin-bottom:10px}.report-card h3{margin:0 0 7px}.report-meta{color:#91a4b9;font-size:12px;margin-bottom:8px}.report-card p{color:#c9d6e4;line-height:1.7;margin:6px 0}
+.home-welcome{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:18px;padding:23px 24px;border-radius:17px;background:linear-gradient(120deg,#102945,#0b1c30);border:1px solid #214565}.home-welcome h2{margin:0 0 7px}.home-welcome p{margin:0;color:var(--muted)}.home-badge{padding:9px 13px;border-radius:999px;background:rgba(66,201,138,.09);border:1px solid rgba(66,201,138,.2);color:#72d8a6;font-weight:800;font-size:13px;white-space:nowrap}
+@media(max-width:700px){.app{display:block}.side{width:100%;height:auto;position:relative;border-left:0;border-bottom:1px solid var(--line);padding:14px}.logo{margin-bottom:15px}.nav{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}.nav button{margin:0}.main{padding:18px}.top{gap:10px}.top:after{font-size:10px}.home-welcome{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
 <body>
 <div class="app">
 <aside class="side">
-<div class="logo"><span>𝐃𝐂〢 𝐌𝐃𝐓</span></div>
+<div class="logo"><span>MINISTRY OF INTERIOR<br><small style="font-size:11px;color:#91a4b9;font-weight:700">DC CITY</small></span></div>
 <div class="nav">
 <button data-page="home">الرئيسية</button><button data-page="search">البحث</button>
 <button data-page="citizens">المواطنين</button><button data-page="vehicles">المركبات</button>
-<button data-page="reports">البلاغات</button><button data-page="cases">القضايا</button><button data-page="violations">المخالفات</button>
+<button data-page="reports">البلاغات</button><button data-page="cases">القضايا</button><button data-page="violations">المخالفات</button><button data-page="points">⭐ النقاط</button><button data-page="promotions">🎖️ طلبات الترقية</button>
 <button data-page="sectors">▾ القطاعات</button><button id="loginNav" data-page="login">🔐 تسجيل الدخول</button><button id="serviceNav" data-page="service">🟢 التواجد</button><button id="logoutNav" data-page="logout" onclick="logoutMDT();return false;">🚪 تسجيل الخروج</button>
 </div></aside>
 <main class="main">
@@ -63,7 +41,7 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="card login-card">
 <div class="login-icon">🔐</div>
 <h2>تسجيل الدخول</h2>
-<p class="muted">أدخل رقم الـ ID الخاص بك للدخول إلى نظام DC MDT</p>
+<p class="muted">أدخل رقم الـ ID الخاص بك للدخول إلى نظام Ministry of Interior</p>
 <input id="loginId" inputmode="numeric" maxlength="4" placeholder="رقم الـ ID" oninput="this.value=this.value.replace(/\D/g,'')">
 <button class="login-btn" onclick="loginMDT()">تسجيل الدخول</button>
 <div id="loginMsg" class="login-msg"></div><button class="back" style="margin-top:8px" onclick="logoutMDT()">تسجيل الخروج</button>
@@ -71,6 +49,7 @@ textarea.search{resize:vertical;font-family:inherit}
 </section>
 
 <section id="home" class="page active">
+<div class="home-welcome"><div><h2>مرحباً بك في وزارة الداخلية — مدينة DC</h2><p>نظام الإدارة والبيانات المركزي للقطاعات الأمنية.</p></div><div class="home-badge">● SYSTEM ONLINE</div></div>
 <div class="grid">
 <div class="stat">المواطنين<b>8</b></div><div class="stat">المركبات<b>8</b></div>
 <div class="stat">البلاغات<b>0</b></div><div class="stat">القضايا<b>0</b></div>
@@ -88,7 +67,7 @@ textarea.search{resize:vertical;font-family:inherit}
 </div></section>
 
 <section id="citizens" class="page"><div class="card"><h2>المواطنين</h2>
-<div class="item" onclick="openAbuNasser()"><b>1111 — ابو ناصر</b><br><small class="muted">العمر: 42 · Mercedes · اللوحة: ????</small></div>
+<div class="item" style="cursor:pointer" onclick="openAbuNasser()"><b>1111 — ابو ناصر</b><br><small class="muted">العمر: 42 · Mercedes · اللوحة: ????</small></div>
 <div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div><div class="item" onclick="openAbdulaziz()"><b>6791 — عبدالعزيز الساعدي</b><br><small class="muted">العمر: 32 · شرطة DC · Classic Car · اللوحة: HH OS 81</small></div>
 <div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div><div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>
 <div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>
@@ -105,7 +84,7 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
     <div class="item"><b>Bentley</b><br><small class="muted">اللوحة: R DF 11</small></div>
     </div>
-</div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('citizen')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('citizen')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
+</div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('citizen')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('citizen')">⚠️ قيد مخالفة</button><button class="login-btn points-btn" data-points-person="citizen" onclick="openPointsModal('citizen')">⭐ إضافة نقاط</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="abdulaziz" class="page"><div class="card">
 <h2>ملف المواطن — عبدالعزيز الساعدي</h2>
@@ -115,7 +94,7 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>Classic Car</b><br><small class="muted">اللوحة: HH OS 81</small></div>
-</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('abdulaziz')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('abdulaziz')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
+</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('abdulaziz')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('abdulaziz')">⚠️ قيد مخالفة</button><button class="login-btn points-btn" data-points-person="abdulaziz" onclick="openPointsModal('abdulaziz')">⭐ إضافة نقاط</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 <section id="saqr" class="page"><div class="card">
 <h2>ملف المواطن — صقر شليويح</h2>
 <div class="grid">
@@ -125,7 +104,7 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>BMW</b><br><small class="muted">اللوحة: 93 HH MN</small></div>
 </div>
-</div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('saqr')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('saqr')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
+</div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('saqr')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('saqr')">⚠️ قيد مخالفة</button><button class="login-btn points-btn" data-points-person="saqr" onclick="openPointsModal('saqr')">⭐ إضافة نقاط</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="farnas" class="page"><div class="card">
 <h2>ملف المواطن — فرناس بيندل</h2>
@@ -135,7 +114,7 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>BMW</b><br><small class="muted">اللوحة: HH HZ 5</small></div>
-</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('farnas')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('farnas')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
+</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('farnas')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('farnas')">⚠️ قيد مخالفة</button><button class="login-btn points-btn" data-points-person="farnas" onclick="openPointsModal('farnas')">⭐ إضافة نقاط</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 <section id="mateo" class="page"><div class="card">
 <h2>ملف المواطن — ماتيو تشاندلر</h2>
 <div class="grid">
@@ -145,7 +124,7 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>Lamborghini</b><br><small class="muted">اللوحة: HH DZ 16 · أكثر من سيارة</small></div>
 </div>
-</div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('mateo')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('mateo')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
+</div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('mateo')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('mateo')">⚠️ قيد مخالفة</button><button class="login-btn points-btn" data-points-person="mateo" onclick="openPointsModal('mateo')">⭐ إضافة نقاط</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="leon" class="page"><div class="card">
 <h2>ملف المواطن — ليون العنزي</h2>
@@ -155,7 +134,7 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>BMW</b><br><small class="muted">اللوحة: HH WT 70</small></div>
-</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('leon')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('leon')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
+</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('leon')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('leon')">⚠️ قيد مخالفة</button><button class="login-btn points-btn" data-points-person="leon" onclick="openPointsModal('leon')">⭐ إضافة نقاط</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="saddam" class="page"><div class="card">
 <h2>ملف المواطن — صدام البلوي</h2>
@@ -165,7 +144,7 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>Stuttgart GMA C63 Facelift</b><br><small class="muted">اللوحة: R DF 11</small></div>
-</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('saddam')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('saddam')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
+</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('saddam')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('saddam')">⚠️ قيد مخالفة</button><button class="login-btn points-btn" data-points-person="saddam" onclick="openPointsModal('saddam')">⭐ إضافة نقاط</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="abu-nasser" class="page"><div class="card">
 <h2>ملف المواطن — ابو ناصر</h2>
@@ -207,13 +186,18 @@ textarea.search{resize:vertical;font-family:inherit}
 
 <section id="cases" class="page"><div class="card"><h2>القضايا</h2><div id="casesList" class="empty">لا توجد قضايا.</div></div></section>
 <section id="violations" class="page"><div class="card"><h2>⚠️ المخالفات</h2><div id="violationsList" class="empty">لا توجد مخالفات محفوظة.</div></div></section>
-<section id="sectors" class="page"><div class="card"><h2>القطاعات</h2>
+<section id="points" class="page"><div class="card"><h2>⭐ نقاط العساكر</h2><p class="muted">سجل نقاط أفراد القطاعات الأمنية. لا يمكن إضافة النقاط إلا برتبة أعلى من النقيب، ولا يمكن للعسكري منح نفسه نقاطًا.</p><div id="pointsList" class="empty">لا توجد نقاط مسجلة.</div></div></section>
+<section id="promotions" class="page">
+<div class="card"><h2>🎖️ طلبات الترقية</h2>
+<p class="muted">الوصول إلى الحد المطلوب من النقاط يجعلك مؤهلًا لتقديم طلب فقط، ولا تتم الترقية تلقائيًا. طلبات الترقية إلى رتبة عقيد أو أعلى لا يوافق عليها إلا عقيد أو أعلى.</p>
+<div id="promotionEligibility" class="card" style="margin:12px 0"></div>
+<div id="promotionsList" class="empty">لا توجد طلبات ترقية.</div></div></section> <section id="sectors" class="page"><div class="card"><h2>القطاعات</h2>
 <div class="item"><b>شرطة DC</b><br><small class="muted">Police DC</small></div>
-<div class="card" style="margin-top:10px"><div class="item"><b>غياث البلوي</b><br><small class="muted">الرتبة: فريق أول</small></div><div class="item"><b>عبدالعزيز الساعدي</b><br><small class="muted">الرتبة: فريق</small></div><div class="item"><b>صدام البلوي</b><br><small class="muted">الرتبة: ملازم أول</small></div></div>
+<div class="card" style="margin-top:10px"><div class="item" style="cursor:pointer" onclick="openCitizen()"><b>غياث البلوي</b><br><small class="muted">الرتبة: فريق أول</small></div><div class="item" style="cursor:pointer" onclick="openAbdulaziz()"><b>عبدالعزيز الساعدي</b><br><small class="muted">الرتبة: فريق</small></div><div class="item" style="cursor:pointer" onclick="openSaddam()"><b>صدام البلوي</b><br><small class="muted">الرتبة: ملازم أول</small></div></div>
 <div class="item"><b>CIA</b><br><small class="muted">Central Intelligence Agency</small></div>
-<div class="card" style="margin-top:10px"><div class="item"><b>فرناس بيندل</b><br><small class="muted">الرتبة: فريق أول</small></div><div class="item"><b>ماتيو تشاندلر</b><br><small class="muted">الرتبة: فريق</small></div></div>
+<div class="card" style="margin-top:10px"><div class="item" style="cursor:pointer" onclick="openFarnas()"><b>فرناس بيندل</b><br><small class="muted">الرتبة: فريق أول</small></div><div class="item" style="cursor:pointer" onclick="openMateo()"><b>ماتيو تشاندلر</b><br><small class="muted">الرتبة: فريق</small></div></div>
 <div class="item"><b>RA7</b></div>
-<div class="card" style="margin-top:10px"><div class="item"><b>صقر شليويح</b><br><small class="muted">الرتبة: رائد</small></div><div class="item"><b>ليون العنزي</b><br><small class="muted">الرتبة: رقيب أول</small></div></div>
+<div class="card" style="margin-top:10px"><div class="item" style="cursor:pointer" onclick="openSaqr()"><b>صقر شليويح</b><br><small class="muted">الرتبة: رائد</small></div><div class="item" style="cursor:pointer" onclick="openLeon()"><b>ليون العنزي</b><br><small class="muted">الرتبة: رقيب أول</small></div></div>
 </div></section>
 
 
@@ -254,6 +238,30 @@ textarea.search{resize:vertical;font-family:inherit}
   </div>
 </div>
 
+
+<div id="pointsModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;padding:18px">
+  <div class="card" style="width:min(620px,100%);max-height:90vh;overflow:auto">
+    <h2>⭐ إضافة نقاط</h2>
+    <div id="pointsPerson" class="muted" style="margin-bottom:12px"></div>
+    <div class="grid">
+      <div class="field"><span>عدد النقاط</span><input id="pointsAmount" class="search" type="number" min="1" max="500" step="1" placeholder="مثال: 500"></div>
+      <div class="field"><span>سبب منح النقاط</span><input id="pointsReason" class="search" placeholder="مثال: أداء مميز"></div>
+    </div>
+    <div class="field" style="margin-top:10px"><span>التفاصيل والملاحظات</span><textarea id="pointsDetails" class="search" rows="4" placeholder="اكتب سبب وتفاصيل منح النقاط..."></textarea></div>
+    <div id="pointsMsg" class="login-msg" style="margin-top:10px"></div>
+    <div style="display:flex;gap:8px;margin-top:12px"><button class="login-btn points-btn" onclick="savePoints()">حفظ النقاط</button><button class="back" onclick="closePointsModal()">إلغاء</button></div>
+  </div>
+</div>
+<div id="promotionModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;padding:18px">
+  <div class="card" style="width:min(620px,100%);max-height:90vh;overflow:auto">
+    <h2>🎖️ تقديم طلب ترقية</h2>
+    <div id="promotionPerson" class="muted" style="margin-bottom:12px"></div>
+    <div class="field"><span>سبب طلب الترقية</span><textarea id="promotionReason" class="search" rows="3" placeholder="اكتب سبب طلب الترقية..."></textarea></div>
+    <div class="field" style="margin-top:10px"><span>التفاصيل والملاحظات</span><textarea id="promotionDetails" class="search" rows="4" placeholder="الإنجازات أو الملاحظات..."></textarea></div>
+    <div id="promotionMsg" class="login-msg" style="margin-top:10px"></div>
+    <div style="display:flex;gap:8px;margin-top:12px"><button class="login-btn" onclick="savePromotionRequest()">إرسال الطلب</button><button class="back" onclick="closePromotionModal()">إلغاء</button></div>
+  </div>
+</div>
 <div id="caseModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;padding:18px">
   <div class="card" style="width:min(620px,100%);max-height:90vh;overflow:auto">
     <h2>➕ إضافة قضية</h2>
@@ -275,7 +283,7 @@ textarea.search{resize:vertical;font-family:inherit}
 </div>
 
 <script>
-const titles={login:'تسجيل الدخول',home:'الرئيسية',search:'البحث',citizens:'المواطنين',citizen:'ملف غياث البلوي',abdulaziz:'ملف عبدالعزيز الساعدي',saqr:'ملف صقر شليويح',farnas:'ملف فرناس بيندل', 'abu-nasser':'ملف ابو ناصر',mateo:'ملف ماتيو تشاندلر',leon:'ملف ليون العنزي',saddam:'ملف صدام البلوي',vehicles:'المركبات',reports:'البلاغات',cases:'القضايا',violations:'المخالفات',sectors:'القطاعات',settings:'الإعدادات',service:'الخدمة'};
+const titles={login:'تسجيل الدخول',home:'الرئيسية',search:'البحث',citizens:'المواطنين',citizen:'ملف غياث البلوي',abdulaziz:'ملف عبدالعزيز الساعدي',saqr:'ملف صقر شليويح',farnas:'ملف فرناس بيندل', 'abu-nasser':'ملف ابو ناصر',mateo:'ملف ماتيو تشاندلر',leon:'ملف ليون العنزي',saddam:'ملف صدام البلوي',vehicles:'المركبات',reports:'البلاغات',cases:'القضايا',violations:'المخالفات',points:'النقاط',promotions:'طلبات الترقية',sectors:'القطاعات',settings:'الإعدادات',service:'الخدمة'};
 
 
 const mdtUsers={
@@ -299,6 +307,7 @@ const mdtRanks={
   '8952':'ملازم أول',
   '1111':'غير محددة'
 };
+try{const savedRanks=JSON.parse(localStorage.getItem('dc_mdt_ranks')||'{}');Object.assign(mdtRanks,savedRanks);}catch(e){}
 
 function currentUser(){
   const id=localStorage.getItem('dc_mdt_logged_id');
@@ -362,7 +371,10 @@ function updateLoginUI(){
     }
     renderReports();
     renderCases();
-renderViolations();
+    renderViolations();
+    renderPoints();
+    updatePointsUI();
+    renderPromotions();
   }else{
     if(loginNav) loginNav.style.display='block';
     if(serviceNav) serviceNav.style.display='none';
@@ -371,6 +383,7 @@ renderViolations();
     if(app) app.style.display='none';
     if(controls) controls.style.display='none';
     if(welcome) welcome.textContent='سجل الدخول أولاً.';
+    updatePointsUI();
   }
 }
 
@@ -447,6 +460,115 @@ function saveCase(){
 }
 
 
+
+const pointsPeople=casePeople;
+const pointEligibleRanks=['رائد','مقدم','عقيد','عميد','لواء','فريق','فريق أول'];
+function canGivePoints(user){ return !!user && pointEligibleRanks.includes(user.rank); }
+function isMilitaryTarget(personKey){ return !!pointsPeople[personKey] && mdtRanks[pointsPeople[personKey][1]] && mdtRanks[pointsPeople[personKey][1]]!=='غير محددة'; }
+function updatePointsUI(){
+  const user=currentUser();
+  document.querySelectorAll('[data-points-person]').forEach(btn=>{
+    const key=btn.getAttribute('data-points-person');
+    const target=pointsPeople[key];
+    btn.style.display=(user && canGivePoints(user) && target && target[1]!==user.id && isMilitaryTarget(key))?'block':'none';
+  });
+}
+let activePointsPerson=null;
+function openPointsModal(personKey){
+  const user=currentUser();
+  if(!user){go('login');return;}
+  if(!canGivePoints(user)){alert('غير مصرح: إضافة النقاط متاحة للرتب الأعلى من النقيب فقط.');return;}
+  activePointsPerson=pointsPeople[personKey];
+  if(!activePointsPerson || !isMilitaryTarget(personKey)){alert('لا يمكن إضافة نقاط لهذا الشخص.');return;}
+  if(activePointsPerson[1]===user.id){alert('لا يمكنك منح نفسك نقاطًا.');return;}
+  document.getElementById('pointsPerson').innerHTML='على: <b>'+escapeHTML(activePointsPerson[0])+'</b> · ID: '+activePointsPerson[1]+' · الرتبة: '+escapeHTML(mdtRanks[activePointsPerson[1]]);
+  document.getElementById('pointsAmount').value='';document.getElementById('pointsReason').value='';document.getElementById('pointsDetails').value='';document.getElementById('pointsMsg').textContent='';
+  document.getElementById('pointsModal').style.display='flex';
+}
+function closePointsModal(){document.getElementById('pointsModal').style.display='none';activePointsPerson=null;}
+function savePoints(){
+  const user=currentUser(),msg=document.getElementById('pointsMsg');
+  if(!user){go('login');return;}
+  if(!canGivePoints(user)){msg.style.color='#e45b68';msg.textContent='غير مصرح: الرتبة يجب أن تكون أعلى من النقيب.';return;}
+  if(!activePointsPerson || activePointsPerson[1]===user.id){msg.style.color='#e45b68';msg.textContent='لا يمكنك منح نفسك نقاطًا.';return;}
+  if(!isMilitaryTarget(Object.keys(pointsPeople).find(k=>pointsPeople[k]===activePointsPerson))){msg.style.color='#e45b68';msg.textContent='النقاط متاحة للعساكر فقط.';return;}
+  const amount=parseInt(document.getElementById('pointsAmount').value,10);
+  const reason=document.getElementById('pointsReason').value.trim();
+  if(!Number.isInteger(amount)||amount<1||amount>500){msg.style.color='#e45b68';msg.textContent='أدخل عدد نقاط صحيح من 1 إلى 500.';return;}
+  if(!reason){msg.style.color='#e45b68';msg.textContent='اكتب سبب منح النقاط أولاً.';return;}
+  const points=JSON.parse(localStorage.getItem('dc_mdt_points')||'[]');
+  points.unshift({number:'P-'+String(Date.now()).slice(-6),amount,reason,details:document.getElementById('pointsDetails').value.trim(),person:activePointsPerson[0],personId:activePointsPerson[1],personRank:mdtRanks[activePointsPerson[1]],author:user.name,authorId:user.id,authorRank:user.rank,time:new Date().toLocaleString('ar-SA')});
+  localStorage.setItem('dc_mdt_points',JSON.stringify(points));
+  msg.style.color='#55d66b';msg.textContent='تمت إضافة النقاط بنجاح';
+  renderPoints();
+  setTimeout(closePointsModal,500);
+}
+function renderPoints(){
+  const box=document.getElementById('pointsList');if(!box)return;
+  const points=JSON.parse(localStorage.getItem('dc_mdt_points')||'[]');
+  if(!points.length){box.className='empty';box.textContent='لا توجد نقاط مسجلة.';return;}
+  const totals={};points.forEach(p=>{totals[p.personId]=(totals[p.personId]||0)+Number(p.amount||0);});
+  box.className='';
+  box.innerHTML='<div class="grid" style="margin-bottom:15px">'+Object.entries(totals).sort((a,b)=>b[1]-a[1]).map(([id,total])=>'<div class="stat"><span>'+escapeHTML(mdtUsers[id]||'غير معروف')+'</span><b>'+total+'</b><small class="muted">نقطة</small></div>').join('')+'</div>'+points.map((p,i)=>'<div class="report-card"><h3>'+escapeHTML(p.person)+' — <span style="color:#6aa9ff">+'+escapeHTML(String(p.amount))+' نقطة</span></h3><div class="report-meta">الرتبة: '+escapeHTML(p.personRank)+' · السبب: '+escapeHTML(p.reason)+'</div><div class="report-meta">بواسطة: '+escapeHTML(p.author)+' · الرتبة: '+escapeHTML(p.authorRank)+' · '+escapeHTML(p.time)+'</div>'+(p.details?'<p>'+escapeHTML(p.details)+'</p>':'')+'<button class="back" onclick="deletePoints('+i+')">حذف العملية</button></div>').join('');
+}
+function deletePoints(i){const user=currentUser();if(!user||!canGivePoints(user)){alert('غير مصرح بحذف سجل النقاط.');return;}const points=JSON.parse(localStorage.getItem('dc_mdt_points')||'[]');points.splice(i,1);localStorage.setItem('dc_mdt_points',JSON.stringify(points));renderPoints();}
+
+const promotionRanks=[
+  {rank:'جندي',points:100},{rank:'جندي أول',points:200},{rank:'عريف',points:350},{rank:'وكيل رقيب',points:500},
+  {rank:'رقيب',points:700},{rank:'رقيب أول',points:900},{rank:'رئيس رقباء',points:1200},{rank:'ملازم',points:1500},
+  {rank:'ملازم أول',points:2000},{rank:'نقيب',points:2500},{rank:'رائد',points:3500},{rank:'مقدم',points:5000},
+  {rank:'عقيد',points:7000},{rank:'عميد',points:10000},{rank:'لواء',points:15000},{rank:'فريق',points:20000},{rank:'فريق أول',points:null}
+];
+const promotionRankIndex={}; promotionRanks.forEach((r,i)=>promotionRankIndex[r.rank]=i);
+function getPromotionTotal(id){return JSON.parse(localStorage.getItem('dc_mdt_points')||'[]').filter(p=>p.personId===id).reduce((a,p)=>a+Number(p.amount||0),0)}
+function nextPromotion(rank){const i=promotionRankIndex[rank]; return i==null||i>=promotionRanks.length-1?null:promotionRanks[i+1]}
+function canApprovePromotion(user,targetRank){
+  if(!user||promotionRankIndex[user.rank]==null||promotionRankIndex[targetRank]==null)return false;
+  const targetI=promotionRankIndex[targetRank], userI=promotionRankIndex[user.rank];
+  if(targetI>=promotionRankIndex['عقيد']) return userI>=promotionRankIndex['عقيد'];
+  return userI>targetI;
+}
+let activePromotion=null;
+function openPromotionModal(){
+ const user=currentUser(); if(!user){go('login');return;}
+ const next=nextPromotion(user.rank), total=getPromotionTotal(user.id);
+ if(!next){alert('أنت في أعلى رتبة ولا توجد ترقية أعلى.');return;}
+ if(total<next.points){alert('لم تصل إلى الحد المطلوب. تحتاج '+(next.points-total)+' نقطة إضافية للترقية إلى '+next.rank+'.');return;}
+ activePromotion={user,next,total};
+ document.getElementById('promotionPerson').innerHTML='المقدم: <b>'+escapeHTML(user.name)+'</b> · ID: '+user.id+' · الرتبة: '+escapeHTML(user.rank)+' · النقاط: <b>'+total+'</b> · الترقية إلى: <b>'+next.rank+'</b> · الحد: '+next.points;
+ document.getElementById('promotionReason').value='';document.getElementById('promotionDetails').value='';document.getElementById('promotionMsg').textContent='';document.getElementById('promotionModal').style.display='flex';
+}
+function closePromotionModal(){document.getElementById('promotionModal').style.display='none';activePromotion=null}
+function savePromotionRequest(){
+ const user=currentUser(),msg=document.getElementById('promotionMsg'); if(!user||!activePromotion){return}
+ const reason=document.getElementById('promotionReason').value.trim(); if(!reason){msg.style.color='#e45b68';msg.textContent='اكتب سبب طلب الترقية.';return}
+ const requests=JSON.parse(localStorage.getItem('dc_mdt_promotions')||'[]');
+ if(requests.some(r=>r.applicantId===user.id&&r.status==='pending')){msg.style.color='#e45b68';msg.textContent='لديك طلب ترقية قيد المراجعة بالفعل.';return}
+ requests.unshift({number:'PR-'+String(Date.now()).slice(-6),applicant:user.name,applicantId:user.id,currentRank:user.rank,targetRank:activePromotion.next.rank,points:activePromotion.total,required:activePromotion.next.points,reason,details:document.getElementById('promotionDetails').value.trim(),status:'pending',approver:'',approverId:'',approverRank:'',time:new Date().toLocaleString('ar-SA')});
+ localStorage.setItem('dc_mdt_promotions',JSON.stringify(requests)); msg.style.color='#55d66b';msg.textContent='تم إرسال طلب الترقية بنجاح';renderPromotions();setTimeout(closePromotionModal,500);
+}
+function approvePromotion(i){
+ const user=currentUser(),requests=JSON.parse(localStorage.getItem('dc_mdt_promotions')||'[]'),r=requests[i]; if(!user||!r||r.status!=='pending'){return}
+ if(!canApprovePromotion(user,r.targetRank)){alert('غير مصرح بالموافقة على هذه الترقية.');return}
+ r.status='approved';r.approver=user.name;r.approverId=user.id;r.approverRank=user.rank;r.approvedTime=new Date().toLocaleString('ar-SA');
+ mdtRanks[r.applicantId]=r.targetRank; localStorage.setItem('dc_mdt_ranks',JSON.stringify(mdtRanks));
+ localStorage.setItem('dc_mdt_promotions',JSON.stringify(requests));
+ alert('تم قبول طلب الترقية وتحديث رتبة '+r.applicant+' إلى '+r.targetRank); renderPromotions(); updateLoginUI();
+}
+function rejectPromotion(i){
+ const user=currentUser(),requests=JSON.parse(localStorage.getItem('dc_mdt_promotions')||'[]'),r=requests[i]; if(!user||!r||r.status!=='pending'){return}
+ if(!canApprovePromotion(user,r.targetRank)){alert('غير مصرح برفض هذه الترقية.');return}
+ r.status='rejected';r.approver=user.name;r.approverId=user.id;r.approverRank=user.rank;r.rejectedTime=new Date().toLocaleString('ar-SA');localStorage.setItem('dc_mdt_promotions',JSON.stringify(requests));renderPromotions();
+}
+function renderPromotions(){
+ const box=document.getElementById('promotionsList'),elig=document.getElementById('promotionEligibility');if(!box)return; const user=currentUser();
+ if(!user){elig.innerHTML='<div class="muted">سجل الدخول لعرض أهليتك وطلبات الترقية.</div>';box.innerHTML='<div class="empty">سجل الدخول أولاً.</div>';return}
+ const total=getPromotionTotal(user.id),next=nextPromotion(user.rank); let html='<div><b>رتبتك:</b> '+escapeHTML(user.rank)+' · <b>نقاطك:</b> '+total;
+ if(next){html+=' · <b>الحد للترقية إلى '+escapeHTML(next.rank)+':</b> '+next.points; if(total>=next.points)html+=' <button class="login-btn" style="margin-right:8px" onclick="openPromotionModal()">➕ تقديم طلب ترقية</button>'; else html+=' <span class="muted">(متبقي '+(next.points-total)+' نقطة)</span>';}else html+=' · <span class="muted">أعلى رتبة</span>'; elig.innerHTML=html+'</div>';
+ const requests=JSON.parse(localStorage.getItem('dc_mdt_promotions')||'[]'); if(!requests.length){box.innerHTML='<div class="empty">لا توجد طلبات ترقية.</div>';return}
+ box.className=''; box.innerHTML=requests.map((r,i)=>{const can=canApprovePromotion(user,r.targetRank)&&r.status==='pending';const st=r.status==='pending'?'⏳ قيد المراجعة':r.status==='approved'?'✅ مقبول':'❌ مرفوض';return '<div class="report-card"><h3>'+escapeHTML(r.applicant)+' — '+escapeHTML(r.currentRank)+' → '+escapeHTML(r.targetRank)+'</h3><div class="report-meta">النقاط: '+r.points+' / '+r.required+' · الحالة: '+st+'</div><div class="report-meta">الطلب: '+escapeHTML(r.number)+' · '+escapeHTML(r.time)+'</div><p><b>السبب:</b> '+escapeHTML(r.reason)+'</p>'+(r.details?'<p>'+escapeHTML(r.details)+'</p>':'')+(r.approver?'<div class="report-meta">المعتمد: '+escapeHTML(r.approver)+' · '+escapeHTML(r.approverRank)+'</div>':'')+(can?'<div style="display:flex;gap:8px;margin-top:10px"><button class="login-btn" onclick="approvePromotion('+i+')">✅ موافقة</button><button class="back" onclick="rejectPromotion('+i+')">❌ رفض</button></div>':'')+'</div>'}).join('');
+}
+
 const violationPeople=casePeople;
 let activeViolationPerson=null;
 function openViolationModal(personKey){
@@ -519,15 +641,8 @@ function escapeHTML(value){
 }
 
 function go(page){if((page==='service'||page==='reports')&&!currentUser()){page='login';}document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page).classList.add('active');document.getElementById('pageTitle').textContent=titles[page]||'MDT';document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo(0,0)}
-function openCitizen(){go('citizen')}function openAbdulaziz(){go('abdulaziz')}function openSaqr(){go('saqr')}function openFarnas(){go('farnas')}function openAbuNasser(){go('abu-nasser')}function openMateo(){go('mateo')}function openLeon(){go('leon')}function openSaddam(){go('saddam')}
-
-function showMapInfo(title,description){
-  const box=document.getElementById('mapInfo');
-  box.innerHTML='<h3>'+title+'</h3><p>'+description+'</p>';
-}
-
-function searchCitizen(){let q=document.getElementById('searchBox').value.trim().toLowerCase().replace(/\s+/g,'');let r=document.getElementById('searchResults');if(!q){r.innerHTML='';return}let s='';let match=(...v)=>v.some(x=>x.toLowerCase().replace(/\s+/g,'').includes(q));if(match('غياث البلوي','0010','Bentley','R DF 11'))s+='<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>';if(match('عبدالعزيز الساعدي','6791','Classic Car','HH OS 81','شرطة DC'))s+='<div class="item" onclick="openAbdulaziz()"><b>6791 — عبدالعزيز الساعدي</b><br><small class="muted">العمر: 32 · شرطة DC · Classic Car · اللوحة: HH OS 81</small></div>';if(match('صقر شليويح','7890','BMW','93 HH MN'))s+='<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div>';if(match('فرناس بيندل','5720','BMW','HH HZ 5'))s+='<div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>';if(match('ماتيو تشاندلر','1670','Lamborghini','HH DZ 16'))s+='<div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>';if(match('ليون العنزي','1923','BMW','HH WT 70','DC RA7'))s+='<div class="item" onclick="openLeon()"><b>1923 — ليون العنزي</b><br><small class="muted">العمر: 23 · DC RA7 · BMW · اللوحة: HH WT 70</small></div>';if(match('صدام البلوي','8952','Stuttgart GMA C63 Facelift','R DF 11','شرطة DC'))s+='<div class="item" onclick="openSaddam()"><b>8952 — صدام البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · Stuttgart GMA C63 Facelift · اللوحة: R DF 11</small></div>';if(match('ابو ناصر','1111','Mercedes','????'))s+='<div class="item" onclick="openAbuNasser()"><b>1111 — ابو ناصر</b><br><small class="muted">العمر: 42 · Mercedes · اللوحة: ????</small></div>';r.innerHTML=s||'<div class="empty">لا توجد نتائج.</div>'}
+function openCitizen(){go('citizen')}function openAbdulaziz(){go('abdulaziz')}function openSaqr(){go('saqr')}function openFarnas(){go('farnas')}function openAbuNasser(){go('abu-nasser')}function openMateo(){go('mateo')}function openLeon(){go('leon')}function openSaddam(){go('saddam')} function searchCitizen(){let q=document.getElementById('searchBox').value.trim().toLowerCase().replace(/\s+/g,'');let r=document.getElementById('searchResults');if(!q){r.innerHTML='';return}let s='';let match=(...v)=>v.some(x=>x.toLowerCase().replace(/\s+/g,'').includes(q));if(match('غياث البلوي','0010','Bentley','R DF 11'))s+='<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>';if(match('عبدالعزيز الساعدي','6791','Classic Car','HH OS 81','شرطة DC'))s+='<div class="item" onclick="openAbdulaziz()"><b>6791 — عبدالعزيز الساعدي</b><br><small class="muted">العمر: 32 · شرطة DC · Classic Car · اللوحة: HH OS 81</small></div>';if(match('صقر شليويح','7890','BMW','93 HH MN'))s+='<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div>';if(match('فرناس بيندل','5720','BMW','HH HZ 5'))s+='<div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>';if(match('ماتيو تشاندلر','1670','Lamborghini','HH DZ 16'))s+='<div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>';if(match('ليون العنزي','1923','BMW','HH WT 70','DC RA7'))s+='<div class="item" onclick="openLeon()"><b>1923 — ليون العنزي</b><br><small class="muted">العمر: 23 · DC RA7 · BMW · اللوحة: HH WT 70</small></div>';if(match('صدام البلوي','8952','Stuttgart GMA C63 Facelift','R DF 11','شرطة DC'))s+='<div class="item" onclick="openSaddam()"><b>8952 — صدام البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · Stuttgart GMA C63 Facelift · اللوحة: R DF 11</small></div>';if(match('ابو ناصر','1111','Mercedes','????'))s+='<div class="item" style="cursor:pointer" onclick="openAbuNasser()"><b>1111 — ابو ناصر</b><br><small class="muted">العمر: 42 · Mercedes · اللوحة: ????</small></div>';r.innerHTML=s||'<div class="empty">لا توجد نتائج.</div>'}
 document.querySelectorAll('.nav button').forEach(b=>{if(b.dataset.page!=='logout'){b.onclick=()=>go(b.dataset.page);}});
-updateLoginUI();renderReports();renderCases();renderViolations();go('home');
+updateLoginUI();renderReports();renderCases();renderViolations();renderPromotions();go('home');
 </script>
 </body></html>
