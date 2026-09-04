@@ -9,7 +9,7 @@
 .app{display:flex;min-height:100vh}.side{width:230px;background:#111116;border-left:1px solid #29292f;padding:22px 14px}
 .logo{text-align:center;font-size:27px;font-weight:900;margin-bottom:25px}.logo span{color:#e31b23}
 .nav button{width:100%;padding:13px;margin:5px 0;background:#18181e;border:1px solid #29292f;border-radius:10px;color:#ddd;text-align:right;cursor:pointer;font-size:15px}
-.nav button:hover,.nav button.active{background:#e31b23;color:#fff}.main{flex:1;padding:28px;max-width:1100px;margin:auto;width:100%}
+.nav button:hover,.nav button.active{background:#e31b23;color:#fff}.profile-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;padding-top:15px;border-top:1px solid #29292f;direction:rtl}.profile-actions button{flex:1;min-width:150px}.violation-btn{background:#8b5cf6!important}.violation-btn:hover{background:#7c3aed!important}.main{flex:1;padding:28px;max-width:1100px;margin:auto;width:100%}
 .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.top h1{margin:0}.tag{background:#e31b23;padding:8px 13px;border-radius:9px;font-weight:bold}
 .page{display:none}.page.active{display:block}.card{background:#141419;border:1px solid #29292f;border-radius:15px;padding:20px;margin-bottom:16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}.stat{background:#18181e;padding:20px;border-radius:13px;border:1px solid #29292f}.stat b{font-size:28px;display:block;margin-top:8px}
@@ -52,7 +52,7 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="nav">
 <button data-page="home">الرئيسية</button><button data-page="search">البحث</button>
 <button data-page="citizens">المواطنين</button><button data-page="vehicles">المركبات</button>
-<button data-page="reports">البلاغات</button><button data-page="cases">القضايا</button>
+<button data-page="reports">البلاغات</button><button data-page="cases">القضايا</button><button data-page="violations">المخالفات</button>
 <button data-page="sectors">▾ القطاعات</button><button id="loginNav" data-page="login">🔐 تسجيل الدخول</button><button id="serviceNav" data-page="service">🟢 التواجد</button><button id="logoutNav" data-page="logout" onclick="logoutMDT();return false;">🚪 تسجيل الخروج</button>
 </div></aside>
 <main class="main">
@@ -97,7 +97,7 @@ textarea.search{resize:vertical;font-family:inherit}
 </div></section>
 
 <section id="citizen" class="page"><div class="card">
-<button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — غياث البلوي</h2>
+<h2>ملف المواطن — غياث البلوي</h2>
 <div class="grid">
 <div class="field"><span>الاسم</span><b>غياث البلوي</b></div><div class="field"><span>العمر</span><b>23</b></div>
 <div class="field"><span>الهوية</span><b>0010</b></div><div class="field"><span>الوظيفة</span><b>شرطة DC</b></div>
@@ -105,19 +105,19 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
     <div class="item"><b>Bentley</b><br><small class="muted">اللوحة: R DF 11</small></div>
     </div>
-</div></section>
+</div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('citizen')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('citizen')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="abdulaziz" class="page"><div class="card">
-<button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — عبدالعزيز الساعدي</h2>
+<h2>ملف المواطن — عبدالعزيز الساعدي</h2>
 <div class="grid">
 <div class="field"><span>الاسم</span><b>عبدالعزيز الساعدي</b></div><div class="field"><span>العمر</span><b>32</b></div>
 <div class="field"><span>الهوية</span><b>6791</b></div><div class="field"><span>الوظيفة</span><b>شرطة DC</b></div>
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>Classic Car</b><br><small class="muted">اللوحة: HH OS 81</small></div>
-</div></div></section>
+</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('abdulaziz')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('abdulaziz')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 <section id="saqr" class="page"><div class="card">
-<button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — صقر شليويح</h2>
+<h2>ملف المواطن — صقر شليويح</h2>
 <div class="grid">
 <div class="field"><span>الاسم</span><b>صقر شليويح</b></div><div class="field"><span>العمر</span><b>25</b></div>
 <div class="field"><span>الهوية</span><b>7890</b></div><div class="field"><span>الوظيفة</span><b>DC RA7</b></div>
@@ -125,19 +125,19 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>BMW</b><br><small class="muted">اللوحة: 93 HH MN</small></div>
 </div>
-</div></section>
+</div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('saqr')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('saqr')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="farnas" class="page"><div class="card">
-<button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — فرناس بيندل</h2>
+<h2>ملف المواطن — فرناس بيندل</h2>
 <div class="grid">
 <div class="field"><span>الاسم</span><b>فرناس بيندل</b></div><div class="field"><span>العمر</span><b>25</b></div>
 <div class="field"><span>الهوية</span><b>5720</b></div><div class="field"><span>الوظيفة</span><b>DC CIA</b></div>
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>BMW</b><br><small class="muted">اللوحة: HH HZ 5</small></div>
-</div></div></section>
+</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('farnas')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('farnas')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 <section id="mateo" class="page"><div class="card">
-<button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — ماتيو تشاندلر</h2>
+<h2>ملف المواطن — ماتيو تشاندلر</h2>
 <div class="grid">
 <div class="field"><span>الاسم</span><b>ماتيو تشاندلر</b></div><div class="field"><span>العمر</span><b>30</b></div>
 <div class="field"><span>الهوية</span><b>1670</b></div><div class="field"><span>الوظيفة</span><b>DC CIA</b></div>
@@ -145,35 +145,35 @@ textarea.search{resize:vertical;font-family:inherit}
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>Lamborghini</b><br><small class="muted">اللوحة: HH DZ 16 · أكثر من سيارة</small></div>
 </div>
-</div></section>
+</div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('mateo')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('mateo')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="leon" class="page"><div class="card">
-<button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — ليون العنزي</h2>
+<h2>ملف المواطن — ليون العنزي</h2>
 <div class="grid">
 <div class="field"><span>الاسم</span><b>ليون العنزي</b></div><div class="field"><span>العمر</span><b>23</b></div>
 <div class="field"><span>الهوية</span><b>1923</b></div><div class="field"><span>الوظيفة</span><b>DC RA7</b></div>
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>BMW</b><br><small class="muted">اللوحة: HH WT 70</small></div>
-</div></div></section>
+</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('leon')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('leon')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="saddam" class="page"><div class="card">
-<button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — صدام البلوي</h2>
+<h2>ملف المواطن — صدام البلوي</h2>
 <div class="grid">
 <div class="field"><span>الاسم</span><b>صدام البلوي</b></div><div class="field"><span>العمر</span><b>23</b></div>
 <div class="field"><span>الهوية</span><b>8952</b></div><div class="field"><span>الوظيفة</span><b>شرطة DC</b></div>
 <div class="field"><span>عدد المركبات</span><b>1</b></div></div>
 <div class="card" style="margin-top:15px"><h3>المركبات</h3>
 <div class="item"><b>Stuttgart GMA C63 Facelift</b><br><small class="muted">اللوحة: R DF 11</small></div>
-</div></div></section>
+</div></div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('saddam')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('saddam')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="abu-nasser" class="page"><div class="card">
-<button class="back" onclick="go('citizens')">رجوع</button><h2>ملف المواطن — ابو ناصر</h2>
+<h2>ملف المواطن — ابو ناصر</h2>
 <div class="grid">
 <div class="field"><span>الاسم</span><b>ابو ناصر</b></div><div class="field"><span>العمر</span><b>42</b></div>
 <div class="field"><span>الهوية</span><b>1111</b></div><div class="field"><span>الوظيفة</span><b>غير محدد</b></div>
 <div class="field"><span>السيارة</span><b>Mercedes</b></div><div class="field"><span>اللوحة</span><b>????</b></div></div>
-</div></section>
+</div><div class="profile-actions"><button class="login-btn" onclick="openCaseModal('abu-nasser')">➕ إضافة قضية</button><button class="login-btn violation-btn" onclick="openViolationModal('abu-nasser')">⚠️ قيد مخالفة</button><button class="back" onclick="go('citizens')">رجوع</button></div></section>
 
 <section id="vehicles" class="page"><div class="card"><h2>المركبات</h2>
     <div class="item"><b>Bentley</b><br><small class="muted">اللوحة: R DF 11 · المالك: غياث البلوي</small></div>
@@ -205,7 +205,8 @@ textarea.search{resize:vertical;font-family:inherit}
 </div>
 </section>
 
-<section id="cases" class="page"><div class="card"><h2>القضايا</h2><div class="empty">لا توجد قضايا.</div></div></section>
+<section id="cases" class="page"><div class="card"><h2>القضايا</h2><div id="casesList" class="empty">لا توجد قضايا.</div></div></section>
+<section id="violations" class="page"><div class="card"><h2>⚠️ المخالفات</h2><div id="violationsList" class="empty">لا توجد مخالفات محفوظة.</div></div></section>
 <section id="sectors" class="page"><div class="card"><h2>القطاعات</h2>
 <div class="item"><b>شرطة DC</b><br><small class="muted">Police DC</small></div>
 <div class="card" style="margin-top:10px"><div class="item"><b>غياث البلوي</b><br><small class="muted">الرتبة: فريق أول</small></div><div class="item"><b>عبدالعزيز الساعدي</b><br><small class="muted">الرتبة: فريق</small></div><div class="item"><b>صدام البلوي</b><br><small class="muted">الرتبة: ملازم أول</small></div></div>
@@ -235,8 +236,46 @@ textarea.search{resize:vertical;font-family:inherit}
 <section id="settings" class="page"><div class="card"><h2>الإعدادات</h2><p class="muted">إعدادات MDT v1</p></div></section>
 
 </main></div>
+<div id="violationModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;padding:18px">
+  <div class="card" style="width:min(620px,100%);max-height:90vh;overflow:auto">
+    <h2>⚠️ قيد مخالفة</h2>
+    <div id="violationPerson" class="muted" style="margin-bottom:12px"></div>
+    <div class="grid">
+      <div class="field"><span>نوع المخالفة</span><select id="violationType" class="search"><option>سرعة</option><option>قطع إشارة</option><option>وقوف ممنوع</option><option>قيادة متهورة</option><option>عدم ربط حزام الأمان</option><option>استخدام مركبة بدون تصريح</option><option>أخرى</option></select></div>
+      <div class="field"><span>قيمة المخالفة</span><input id="violationAmount" class="search" placeholder="مثال: 500$"></div>
+    </div>
+    <div class="grid" style="margin-top:10px">
+      <div class="field"><span>رقم اللوحة</span><input id="violationPlate" class="search" placeholder="رقم اللوحة إن وجد"></div>
+      <div class="field"><span>الموقع</span><input id="violationLocation" class="search" placeholder="مكان تسجيل المخالفة"></div>
+    </div>
+    <div class="field" style="margin-top:10px"><span>التفاصيل والملاحظات</span><textarea id="violationDetails" class="search" rows="4" placeholder="اكتب تفاصيل المخالفة..."></textarea></div>
+    <div id="violationMsg" class="login-msg" style="margin-top:10px"></div>
+    <div style="display:flex;gap:8px;margin-top:12px"><button class="login-btn violation-btn" onclick="saveViolation()">حفظ المخالفة</button><button class="back" onclick="closeViolationModal()">إلغاء</button></div>
+  </div>
+</div>
+
+<div id="caseModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;align-items:center;justify-content:center;padding:18px">
+  <div class="card" style="width:min(620px,100%);max-height:90vh;overflow:auto">
+    <h2>➕ إضافة قضية</h2>
+    <div id="casePerson" class="muted" style="margin-bottom:12px"></div>
+    <div class="field"><span>عنوان القضية</span><input id="caseTitle" class="search" placeholder="مثال: سرقة مركبة"></div>
+    <div class="field" style="margin-top:10px"><span>سبب القضية</span><textarea id="caseReason" class="search" rows="3" placeholder="اكتب سبب فتح القضية..."></textarea></div>
+    <div class="grid" style="margin-top:10px">
+      <div class="field"><span>حالة القضية</span><select id="caseStatus" class="search"><option>مفتوحة</option><option>قيد التحقيق</option><option>مغلقة</option></select></div>
+      <div class="field"><span>الأولوية</span><select id="casePriority" class="search"><option>عادية</option><option>متوسطة</option><option>عالية</option><option>عاجلة</option></select></div>
+    </div>
+    <div class="field" style="margin-top:10px"><span>التفاصيل والملاحظات</span><textarea id="caseDetails" class="search" rows="4" placeholder="تفاصيل القضية، الأدلة، الملاحظات..."></textarea></div>
+    <div class="grid" style="margin-top:10px">
+      <div class="field"><span>رقم القضية</span><input id="caseNumber" class="search" placeholder="يُترك فارغًا للتوليد تلقائيًا"></div>
+      <div class="field"><span>الموقع</span><input id="caseLocation" class="search" placeholder="مكان وقوع الحادثة"></div>
+    </div>
+    <div id="caseMsg" class="login-msg" style="margin-top:10px"></div>
+    <div style="display:flex;gap:8px;margin-top:12px"><button class="login-btn" onclick="saveCase()">حفظ القضية</button><button class="back" onclick="closeCaseModal()">إلغاء</button></div>
+  </div>
+</div>
+
 <script>
-const titles={login:'تسجيل الدخول',home:'الرئيسية',search:'البحث',citizens:'المواطنين',citizen:'ملف غياث البلوي',abdulaziz:'ملف عبدالعزيز الساعدي',saqr:'ملف صقر شليويح',farnas:'ملف فرناس بيندل', 'abu-nasser':'ملف ابو ناصر',mateo:'ملف ماتيو تشاندلر',leon:'ملف ليون العنزي',saddam:'ملف صدام البلوي',vehicles:'المركبات',reports:'البلاغات',cases:'القضايا',sectors:'القطاعات',settings:'الإعدادات',service:'الخدمة'};
+const titles={login:'تسجيل الدخول',home:'الرئيسية',search:'البحث',citizens:'المواطنين',citizen:'ملف غياث البلوي',abdulaziz:'ملف عبدالعزيز الساعدي',saqr:'ملف صقر شليويح',farnas:'ملف فرناس بيندل', 'abu-nasser':'ملف ابو ناصر',mateo:'ملف ماتيو تشاندلر',leon:'ملف ليون العنزي',saddam:'ملف صدام البلوي',vehicles:'المركبات',reports:'البلاغات',cases:'القضايا',violations:'المخالفات',sectors:'القطاعات',settings:'الإعدادات',service:'الخدمة'};
 
 
 const mdtUsers={
@@ -322,6 +361,8 @@ function updateLoginUI(){
       status.textContent='الحالة الحالية: '+(saved || 'لم تحدد بعد');
     }
     renderReports();
+    renderCases();
+renderViolations();
   }else{
     if(loginNav) loginNav.style.display='block';
     if(serviceNav) serviceNav.style.display='none';
@@ -380,6 +421,73 @@ function addReport(){
   renderReports();
 }
 
+
+const casePeople={citizen:['غياث البلوي','0010'],abdulaziz:['عبدالعزيز الساعدي','6791'],saqr:['صقر شليويح','7890'],farnas:['فرناس بيندل','5720'],'abu-nasser':['ابو ناصر','1111'],mateo:['ماتيو تشاندلر','1670'],leon:['ليون العنزي','1923'],saddam:['صدام البلوي','8952']};
+let activeCasePerson=null;
+function openCaseModal(personKey){
+  const user=currentUser(); if(!user){go('login');return;}
+  activeCasePerson=casePeople[personKey];
+  document.getElementById('casePerson').innerHTML='المواطن: <b>'+escapeHTML(activeCasePerson[0])+'</b> · ID: '+activeCasePerson[1];
+  ['caseTitle','caseReason','caseDetails','caseNumber','caseLocation'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('caseStatus').value='مفتوحة'; document.getElementById('casePriority').value='عادية';
+  document.getElementById('caseMsg').textContent=''; document.getElementById('caseModal').style.display='flex';
+}
+function closeCaseModal(){document.getElementById('caseModal').style.display='none';activeCasePerson=null;}
+function saveCase(){
+  const user=currentUser(),msg=document.getElementById('caseMsg');
+  if(!user){go('login');return;}
+  const title=document.getElementById('caseTitle').value.trim(),reason=document.getElementById('caseReason').value.trim();
+  if(!title||!reason){msg.style.color='#e31b23';msg.textContent='اكتب عنوان القضية وسبب القضية أولاً';return;}
+  const cases=JSON.parse(localStorage.getItem('dc_mdt_cases')||'[]');
+  const num=document.getElementById('caseNumber').value.trim()||('DC-'+String(Date.now()).slice(-6));
+  cases.unshift({number:num,title,reason,status:document.getElementById('caseStatus').value,priority:document.getElementById('casePriority').value,details:document.getElementById('caseDetails').value.trim(),location:document.getElementById('caseLocation').value.trim(),person:activeCasePerson[0],personId:activeCasePerson[1],author:user.name,authorId:user.id,authorRank:mdtRanks[user.id]||'—',time:new Date().toLocaleString('ar-SA')});
+  localStorage.setItem('dc_mdt_cases',JSON.stringify(cases));
+  msg.style.color='#55d66b';msg.textContent='تم حفظ القضية بنجاح';
+  setTimeout(closeCaseModal,500);
+}
+
+
+const violationPeople=casePeople;
+let activeViolationPerson=null;
+function openViolationModal(personKey){
+  const user=currentUser(); if(!user){go('login');return;}
+  activeViolationPerson=violationPeople[personKey];
+  document.getElementById('violationPerson').innerHTML='المواطن: <b>'+escapeHTML(activeViolationPerson[0])+'</b> · ID: '+activeViolationPerson[1];
+  ['violationAmount','violationPlate','violationLocation','violationDetails'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('violationType').value='سرعة';
+  document.getElementById('violationMsg').textContent='';
+  document.getElementById('violationModal').style.display='flex';
+}
+function closeViolationModal(){document.getElementById('violationModal').style.display='none';activeViolationPerson=null;}
+function saveViolation(){
+  const user=currentUser(),msg=document.getElementById('violationMsg');
+  if(!user){go('login');return;}
+  const type=document.getElementById('violationType').value;
+  const violations=JSON.parse(localStorage.getItem('dc_mdt_violations')||'[]');
+  violations.unshift({number:'V-'+String(Date.now()).slice(-6),type,amount:document.getElementById('violationAmount').value.trim()||'غير محدد',plate:document.getElementById('violationPlate').value.trim(),location:document.getElementById('violationLocation').value.trim(),details:document.getElementById('violationDetails').value.trim(),person:activeViolationPerson[0],personId:activeViolationPerson[1],author:user.name,authorId:user.id,authorRank:mdtRanks[user.id]||'—',time:new Date().toLocaleString('ar-SA')});
+  localStorage.setItem('dc_mdt_violations',JSON.stringify(violations));
+  msg.style.color='#55d66b';msg.textContent='تم قيد المخالفة بنجاح';
+  renderViolations();
+  setTimeout(closeViolationModal,500);
+}
+function renderViolations(){
+  const box=document.getElementById('violationsList'); if(!box)return;
+  const violations=JSON.parse(localStorage.getItem('dc_mdt_violations')||'[]');
+  if(!violations.length){box.className='empty';box.textContent='لا توجد مخالفات محفوظة.';return;}
+  box.className='';
+  box.innerHTML=violations.map((v,i)=>'<div class="report-card"><h3>'+escapeHTML(v.number)+' — '+escapeHTML(v.type)+'</h3><div class="report-meta">على: '+escapeHTML(v.person)+' · ID: '+escapeHTML(v.personId)+'</div><div class="report-meta">القيمة: '+escapeHTML(v.amount)+' · اللوحة: '+escapeHTML(v.plate||'غير مسجلة')+'</div><div class="report-meta">بواسطة: '+escapeHTML(v.author)+' · الرتبة: '+escapeHTML(v.authorRank)+' · '+escapeHTML(v.time)+'</div>'+(v.location?'<div class="report-meta">الموقع: '+escapeHTML(v.location)+'</div>':'')+(v.details?'<p>'+escapeHTML(v.details)+'</p>':'')+'<button class="back" onclick="deleteViolation('+i+')">حذف المخالفة</button></div>').join('');
+}
+function deleteViolation(i){const violations=JSON.parse(localStorage.getItem('dc_mdt_violations')||'[]');violations.splice(i,1);localStorage.setItem('dc_mdt_violations',JSON.stringify(violations));renderViolations();}
+
+function renderCases(){
+  const box=document.getElementById('casesList'); if(!box)return;
+  const cases=JSON.parse(localStorage.getItem('dc_mdt_cases')||'[]');
+  if(!cases.length){box.innerHTML='<div class="empty">لا توجد قضايا محفوظة.</div>';return;}
+  box.className='';
+  box.innerHTML=cases.map((c,i)=>'<div class="report-card"><h3>'+escapeHTML(c.number)+' — '+escapeHTML(c.title)+'</h3><div class="report-meta">على: '+escapeHTML(c.person)+' · الحالة: '+escapeHTML(c.status)+' · الأولوية: '+escapeHTML(c.priority)+'</div><div class="report-meta">سبب القضية: '+escapeHTML(c.reason)+'</div><div class="report-meta">بواسطة: '+escapeHTML(c.author)+' · الرتبة: '+escapeHTML(c.authorRank)+' · '+escapeHTML(c.time)+'</div>'+(c.location?'<div class="report-meta">الموقع: '+escapeHTML(c.location)+'</div>':'')+(c.details?'<p>'+escapeHTML(c.details)+'</p>':'')+'<button class="back" onclick="deleteCase('+i+')">حذف القضية</button></div>').join('');
+}
+function deleteCase(i){const cases=JSON.parse(localStorage.getItem('dc_mdt_cases')||'[]');cases.splice(i,1);localStorage.setItem('dc_mdt_cases',JSON.stringify(cases));renderCases();}
+
 function renderReports(){
   const box=document.getElementById('reportsList');
   if(!box) return;
@@ -420,6 +528,6 @@ function showMapInfo(title,description){
 
 function searchCitizen(){let q=document.getElementById('searchBox').value.trim().toLowerCase().replace(/\s+/g,'');let r=document.getElementById('searchResults');if(!q){r.innerHTML='';return}let s='';let match=(...v)=>v.some(x=>x.toLowerCase().replace(/\s+/g,'').includes(q));if(match('غياث البلوي','0010','Bentley','R DF 11'))s+='<div class="item" onclick="openCitizen()"><b>0010 — غياث البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · المركبات: 1</small></div>';if(match('عبدالعزيز الساعدي','6791','Classic Car','HH OS 81','شرطة DC'))s+='<div class="item" onclick="openAbdulaziz()"><b>6791 — عبدالعزيز الساعدي</b><br><small class="muted">العمر: 32 · شرطة DC · Classic Car · اللوحة: HH OS 81</small></div>';if(match('صقر شليويح','7890','BMW','93 HH MN'))s+='<div class="item" onclick="openSaqr()"><b>7890 — صقر شليويح</b><br><small class="muted">العمر: 25 · DC RA7 · BMW · اللوحة: 93 HH MN</small></div>';if(match('فرناس بيندل','5720','BMW','HH HZ 5'))s+='<div class="item" onclick="openFarnas()"><b>5720 — فرناس بيندل</b><br><small class="muted">العمر: 25 · DC CIA · BMW · اللوحة: HH HZ 5</small></div>';if(match('ماتيو تشاندلر','1670','Lamborghini','HH DZ 16'))s+='<div class="item" onclick="openMateo()"><b>1670 — ماتيو تشاندلر</b><br><small class="muted">العمر: 30 · DC CIA · Lamborghini · اللوحة: HH DZ 16</small></div>';if(match('ليون العنزي','1923','BMW','HH WT 70','DC RA7'))s+='<div class="item" onclick="openLeon()"><b>1923 — ليون العنزي</b><br><small class="muted">العمر: 23 · DC RA7 · BMW · اللوحة: HH WT 70</small></div>';if(match('صدام البلوي','8952','Stuttgart GMA C63 Facelift','R DF 11','شرطة DC'))s+='<div class="item" onclick="openSaddam()"><b>8952 — صدام البلوي</b><br><small class="muted">العمر: 23 · شرطة DC · Stuttgart GMA C63 Facelift · اللوحة: R DF 11</small></div>';if(match('ابو ناصر','1111','Mercedes','????'))s+='<div class="item" onclick="openAbuNasser()"><b>1111 — ابو ناصر</b><br><small class="muted">العمر: 42 · Mercedes · اللوحة: ????</small></div>';r.innerHTML=s||'<div class="empty">لا توجد نتائج.</div>'}
 document.querySelectorAll('.nav button').forEach(b=>{if(b.dataset.page!=='logout'){b.onclick=()=>go(b.dataset.page);}});
-updateLoginUI();go('home');
+updateLoginUI();renderReports();renderCases();renderViolations();go('home');
 </script>
 </body></html>
